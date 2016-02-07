@@ -1,0 +1,297 @@
+html,
+body {
+    height: 100%;
+}
+
+.site-index {
+    background: url("home.jpg") no-repeat;
+    -webkit-background-size: cover;
+}
+
+.pack-index {
+    margin-top: 50px;
+
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.footer{
+    position: fixed;
+    background-color: #333;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 7px 15px 0 0;
+    text-align: right;
+    color: white;
+}
+
+.jumbotron {
+    color: white;
+    text-align: center;
+    background-color: transparent;
+}
+
+.home-name {
+    margin-top: 150px;
+}
+.home-start {
+    margin-top: 350px;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.choose.active {
+    background: #7BB712;
+}
+
+.choose {
+    width: 138px;
+    padding: 10px;
+    position: relative;
+}
+
+.choose-word {
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+.radio-dot:before, .radio-dot:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #fff;
+    border-radius: 100%;
+}
+
+.radio-dot:before {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    top: 10px;
+    left: 16px;
+}
+
+.radio-dot:after {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    top: 14px;
+    left: 20px;
+}
+
+.choose.active .choose-word {
+    color: #fff;
+}
+
+.choose.active .radio-dot:after {
+    background: #426C2A;
+}
+
+.choose.active .radio-dot:before {
+    background: #fff;
+    border-color: #699D17;
+}
+
+.choose:hover .radio-dot:before {
+    border-color: #adadad;
+}
+
+.choose.active:hover .radio-dot:before {
+    border-color: #699D17;
+}
+
+
+.choose.active .radio-dot:after {
+    background: #426C2A;
+}
+
+.choose:hover .radio-dot:after {
+    background: #e6e6e6;
+}
+
+.choose.active:hover .radio-dot:after {
+    background: #426C2A;
+
+}
+
+@media (max-width: 400px) {
+
+    .mobile-br {
+        display: none;
+    }
+
+    .choose {
+        width: 49%;
+        padding: 10px;
+        position: relative;
+    }
+
+}
+
+.choose-bar-block {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.center-block {
+    text-align: center;
+    font-family: Helvetica;
+}
+
+.fig {
+    text-align: center;
+}
+
+.pack-button {
+    width: 100px;
+    margin-top: 10px;
+    font-size: medium;
+}
+
+.bet-buttons {
+    margin-top: 5px;
+}
+
+.content-block {
+    text-align: center;
+    /*background: url("3.jpg");
+    -webkit-background-size: 100%;*/
+    font-family: 'Lobster Two', cursive;
+    font-size: x-large;
+}
+
+.under-bar {
+    margin-bottom: 150px;
+
+}
+
+.bar-st {
+    background: url("bar.jpg");
+    -webkit-background-size: 100%;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 5px solid white;
+}
+
+.hr-black {
+    margin-top: 29px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 5px solid black;
+}
+
+.name-style {
+    font-size: 60px;
+}
+
+.login-signup {
+    padding: 0 0 25px;
+}
+
+.btn-my-login {
+    background: #03ba3e;
+    border-radius: 4px;
+    border: 2px solid #08ba16;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: white;
+}
+
+.btn-my-login:hover{
+    background: rgba(26, 161, 157, 0);
+    border: 2px solid #fcfcff;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: #fcfcff;
+}
+
+.btn-my-sign {
+    background: #fcfcff;
+    border-radius: 4px;
+    border: 2px solid #000000;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: black;
+}
+
+.btn-my-sign:hover{
+    background: rgba(26, 161, 157, 0);
+    border: 2px solid #fcfcff;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: #fcfcff;
+}
