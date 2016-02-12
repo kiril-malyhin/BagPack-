@@ -1,9 +1,9 @@
 'use strict';
 
-app.controller("myBarCtrl", function($scope) {
+app.controller("myBarCtrl", function($scope,Alertify) {
     $scope.showStartContent = true;
     $scope.showChooseContent = false;
-    $scope.showListContent = false
+    $scope.showListContent = false;
 
     $scope.bar = {gender: '',
         temperature: '',
@@ -27,19 +27,9 @@ app.controller("myBarCtrl", function($scope) {
         }
     }, true);
 
+    //setTimeout(function(){ Alertify.alert('Choose some filters to see required checkboxes')}, 2000);
+
+
+
 });
 
-$(function() {
-    $('#modalLoginButton').click(function (){
-        $('#modal-login').modal('show')
-            .find('#modalLoginContent')
-            .load($(this).attr('value'));
-
-    });
-
-    $('#modalSignUpButton').click(function (){
-        $('#modal-sign').modal('show')
-            .find('#modalSignUpContent')
-            .load($(this).attr('value'));
-    });
-});

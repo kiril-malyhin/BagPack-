@@ -126,42 +126,44 @@ $this->title = 'BagPack';
             </div >
         </div>
 
-        <div class="col-md-9 center-block content-block">
-            <div ng-show="showStartContent">
+        <div class="col-md-9 ">
+            <div ng-show="showStartContent" class="content-block center-block">
                 <div class="name-style">Lets start packing</div>
                 <div class="hr-black"></div>
                 <p class="fig"><img src="css/3.jpg" width="900" height="700"></p>
             </div>
 
             <div ng-show="showChooseContent" >
-                <div class="name-style">Packing list</div>
+                <div class="name-style content-block center-block">Packing list</div>
                 <div class="hr-black"></div>
                 <div class="form-group">
+                    <div class="col-md-1"></div>
                     <div class="col-md-4">
-                        <h1>Documents</h1>
-                        <label class="checkbox" >
-                            <input type="checkbox" value="1">
-                            Passport
-                        </label>
-                        <label class="checkbox" >
-                            <input type="checkbox"value="2">
-                            Ticket
-                        </label>
-                        <label class="checkbox" >
-                            <input type="checkbox" value="3">
-                            Visa
-                        </label>
-                        <label class="checkbox" >
-                            <input type="checkbox" value="4">
-                            Money
-                        </label>
+                        <fieldset>
+                            <h2>Documents</h2>
+                            <input type="checkbox" name="animal" value="Cat" />Cats <br />
+                            <input type="checkbox" name="animal" value="Dog" />Dogs<br />
+                            <input type="checkbox" name="animal" value="Bird" />Birds<br />
+                            <input type="submit" value="Submit now" />
+                        </fieldset>
                     </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <fieldset>
+                            <h3>Clothes</h3>
+                            <input type="checkbox" name="animal" value="Cat" />Cats <br />
+                            <input type="checkbox" name="animal" value="Dog" />Dogs<br />
+                            <input type="checkbox" name="animal" value="Bird" />Birds<br />
+                            <input type="submit" value="Submit now" />
+                        </fieldset>
+                    </div>
+                    <div class="col-md-1"></div>
                 </div>
 
             </div>
 
             <div ng-show="showListContent">
-                <div class="name-style">List</div>
+                <div class="name-style content-block center-block">List</div>
                 <div class="hr-black"></div>
                 <div class="row">
                     <div class="btn-group">

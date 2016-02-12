@@ -1,0 +1,46 @@
+<div ng-controller="SignController">
+    <div class="modal-header">
+        <h3 class="modal-title">Sign Up</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-7">
+                <div class="well">
+                    <form id="signForm" method="POST">
+                        <div class="form-group">
+                            <label  class="control-label"><span class="fa fa-user"></span> Username</label>
+                            <input type="text" class="form-control" ng-model="signUpInfo.username"  placeholder="Enter username (at least 6 symbols)">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><span class="fa fa-key"></span> Password</label>
+                            <input type="password" class="form-control" ng-model="signUpInfo.password"  placeholder="Enter password (at least 4 symbols)">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><span class="fa fa-key"></span> Confirm password</label>
+                            <input type="password" class="form-control" ng-model="signUpInfo.confirmPassword" placeholder="Confirm password">
+                            <span class="help-block"></span>
+                        </div>
+                        <div id="signErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+
+                        <button ng-click="signUserUp()" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-user-plus"></span>  Sign up</button>
+                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-5">
+                <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                <ul class="list-unstyled" style="line-height: 2">
+                    <li><span class="fa fa-check text-success"></span> See your lists of baggage</li>
+                    <li><span class="fa fa-check text-success"></span> Update already existing lists</li>
+                    <li><span class="fa fa-check text-success"></span> Create new lists and save them</li>
+                    <li><span class="fa fa-check text-success"></span> Adding some specific stuffs</li>
+                    <li><span class="fa fa-check text-success"></span> Share lists with friends</li>
+                    <li><span class="fa fa-check text-success"></span> Advices for travelling</li>
+                    <li><span class="fa fa-check text-success"></span> Extended functions <small>(only for premium account)</small></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

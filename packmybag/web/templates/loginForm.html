@@ -1,0 +1,71 @@
+
+<div ng-controller="LoginController">
+    <div class="modal-header">
+        <h3 class="modal-title">Login</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-7">
+                <div class="well">
+                    <form id="loginForm" method="POST" novalidate>
+                        <div class="form-group">
+                            <label class="control-label"><span class="fa fa-user"></span>  Username</label>
+                            <input type="text" class="form-control" ng-model="loginInfo.username" placeholder="Enter username">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><span class="fa fa-key"></span>  Password</label>
+                            <input type="password" class="form-control" ng-model="loginInfo.password" placeholder="Enter password" >
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember" id="remember"> Remember login
+                            </label>
+                            <p class="help-block">(if this is a private computer)</p>
+                        </div>
+                        <button ng-click="loginUser()" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-sign-in"></span>  Login</button>
+                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()">Cancel</button>
+                    </form>
+                    <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+                        <!--  Live Preview -->
+                        <blockquote >
+                            <strong>{{reviewCtrl.review.stars}} Stars</strong>
+                            {{reviewCtrl.review.body}}
+                            <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+                        </blockquote>
+
+                        <!--  Review Form -->
+                        <h4>Submit a Review</h4>
+                        <fieldset class="form-group">
+                            <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+                                <option value="">Rate the Product</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-5">
+                <p class="lead">Please login and  <span class="text-success">You will</span></p>
+                <ul class="list-unstyled" style="line-height: 2">
+                    <li><span class="fa fa-check text-success"></span> See your lists of baggage</li>
+                    <li><span class="fa fa-check text-success"></span> Update already existing lists</li>
+                    <li><span class="fa fa-check text-success"></span> Create new lists and save them</li>
+                    <li><span class="fa fa-check text-success"></span> Add some specific stuffs</li>
+                    <li><span class="fa fa-check text-success"></span> Share lists with friends</li>
+                    <li><span class="fa fa-check text-success"></span> See advices for travelling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
