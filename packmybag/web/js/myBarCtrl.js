@@ -22,10 +22,16 @@ app.controller("myBarCtrl", function($scope,Alertify) {
             if(newValue[i] != ''){
                 $scope.showChooseContent = true;
                 $scope.showStartContent = false;
+                $scope.showListContent = false;
                 break;
             }
         }
     }, true);
+
+    $scope.packState = function(){
+        $scope.showListContent = true;
+        $scope.showChooseContent = false;
+    }
 
     //setTimeout(function(){ Alertify.alert('Choose some filters to see required checkboxes')}, 2000);
 

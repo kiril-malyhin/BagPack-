@@ -9,7 +9,6 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\bootstrap\Alert;
-use app\models\Sign;
 
 
 class SignController extends Controller
@@ -31,14 +30,11 @@ class SignController extends Controller
 
         $username = Yii::$app->request->post('username');
         $password = Yii::$app->request->post('password');
-        $passwordConfirm = Yii::$app->request->post('confirmPassword');
 
         $query= new Query();
         if($userInfo = $query->from('user')->where(['email'=>$username])->exists()
-            || $password != $passwordConfirm
             || $username == ""
             || $password ==""
-            || $passwordConfirm ==""
             || strlen($password) < 4
             || strlen($username) < 6
         )

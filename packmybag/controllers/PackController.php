@@ -11,5 +11,8 @@ class PackController extends Controller{
     public function actionCreate(){
         return $this->render("index");
     }
+    public function actionAdvice(){
+        return $this->render("advice");
+    }
 }
 

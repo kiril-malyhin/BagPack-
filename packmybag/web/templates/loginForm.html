@@ -7,52 +7,31 @@
         <div class="row">
             <div class="col-xs-7">
                 <div class="well">
-                    <form id="loginForm" method="POST" novalidate>
+                    <form id="loginForm" method="POST" name="loginForm" novalidate>
                         <div class="form-group">
                             <label class="control-label"><span class="fa fa-user"></span>  Username</label>
-                            <input type="text" class="form-control" ng-model="loginInfo.username" placeholder="Enter username">
+                            <input type="text" name="username" class="form-control" ng-model="loginInfo.username" placeholder="Enter username" ng-minlength="6" ng-maxlength="32" required>
+                            <p ng-show="loginForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                            <p ng-show="loginForm.username.$error.maxlength" class="help-block">Username is too long.</p>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label class="control-label"><span class="fa fa-key"></span>  Password</label>
-                            <input type="password" class="form-control" ng-model="loginInfo.password" placeholder="Enter password" >
+                            <input type="password" name="password" class="form-control" ng-model="loginInfo.password" placeholder="Enter password" ng-minlength="4" ng-maxlength="32" required>
+                            <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                            <p ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</p>
                             <span class="help-block"></span>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="remember" id="remember"> Remember login
+                                <input type="checkbox" value="" checked> Remember User
                             </label>
                             <p class="help-block">(if this is a private computer)</p>
                         </div>
-                        <button ng-click="loginUser()" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-sign-in"></span>  Login</button>
+                        <button ng-click="loginUser()" ng-disabled="loginForm.$invalid" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-sign-in"></span>  Login</button>
                         <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()">Cancel</button>
                     </form>
-                    <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 
-                        <!--  Live Preview -->
-                        <blockquote >
-                            <strong>{{reviewCtrl.review.stars}} Stars</strong>
-                            {{reviewCtrl.review.body}}
-                            <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
-                        </blockquote>
-
-                        <!--  Review Form -->
-                        <h4>Submit a Review</h4>
-                        <fieldset class="form-group">
-                            <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
-                                <option value="">Rate the Product</option>
-                            </select>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
-                        </fieldset>
-                    </form>
                 </div>
             </div>
             <div class="col-xs-5">

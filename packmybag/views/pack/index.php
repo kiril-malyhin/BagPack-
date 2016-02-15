@@ -150,12 +150,13 @@ $this->title = 'BagPack';
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <fieldset>
-                            <h3>Clothes</h3>
+                            <h2>Clothes</h2>
                             <input type="checkbox" name="animal" value="Cat" />Cats <br />
                             <input type="checkbox" name="animal" value="Dog" />Dogs<br />
                             <input type="checkbox" name="animal" value="Bird" />Birds<br />
                             <input type="submit" value="Submit now" />
                         </fieldset>
+                        <button type="button" class="btn btn-my-sign pack-button" style="margin-top: 100px" ng-click="packState()" >Pack now!</button>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
@@ -163,19 +164,20 @@ $this->title = 'BagPack';
             </div>
 
             <div ng-show="showListContent">
-                <div class="name-style content-block center-block">List</div>
-                <div class="hr-black"></div>
-                <div class="row">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default pack-button dropdown-toggle" data-toggle="dropdown">Save<span class="caret"></span></button>
+
+                <div class="row" style="position: relative">
+                    <div class="name-style content-block center-block" style="padding-right: 100px">List</div>
+                    <div class="btn-group" style="position: absolute;right: 80px;top: 30px;">
+                        <button type="button" class="btn btn-my-sign pack-button dropdown-toggle" data-toggle="dropdown">Save<span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">PDF  <span class="glyphicon glyphicon-floppy-disk"></span></a></li>
                             <li><a href="#">Print  <span class="glyphicon glyphicon-print"></span></a></li>
                             <li class="divider"></li>
-                            <li><a href='index.php?r=site/userlogin'>Profile  <span class="glyphicon glyphicon-user"></span></a></li>
+                            <li><a href='index.php?r=site/userlogin'>Profile <span class="glyphicon glyphicon-user"></span></a></li>
                         </ul>
                     </div>
                 </div>
+                <div class="hr-black"></div>
             </div>
         </div>
     </div>

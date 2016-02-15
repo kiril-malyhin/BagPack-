@@ -18,8 +18,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-        'js/libs/ng-alertify/dist/ng-alertify.css'
+        'js/libs/ng-alertify/dist/ng-alertify.css',
+        'css/site.css'
     ];
     public $js = [
         'js/libs/ng-alertify/dist/ng-alertify.js',

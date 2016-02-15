@@ -13,3 +13,7 @@ var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify']);
             $(this).next("label").addClass("RadioSelected");
         }
     });
+
+    $(function () {
+        $("[data-toggle = 'tooltip']").tooltip();
+    })

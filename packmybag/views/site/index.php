@@ -12,7 +12,7 @@ $this->title = 'BagPack';
             <p class="lead">So the main question is:</p>
         </div>
         <div class="home-start">
-            <a href = "index.php?r=pack/create" class="btn btn-lg btn-default">Start packing <span class="glyphicon glyphicon-check"></span></a>
+            <a class="btn btn-lg btn-default"  href = "index.php?r=pack/create" data-toggle="tooltip" data-placement="top"  title="If you want to save your list, please login">Start packing <span class="glyphicon glyphicon-check"></span></a>
         </div>
 
     </div>

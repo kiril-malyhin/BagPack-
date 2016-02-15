@@ -37,7 +37,7 @@ app.controller("LoginController", function($scope, $http, $state, $timeout,Alert
             }
             else {
 
-                Alertify.error('Error! Invalid data!');
+                Alertify.error('Error! Check username or password!');
             }
         }).error(function(error){
             console.error(error);
@@ -50,8 +50,7 @@ app.controller("SignController", function($scope, $http, $state, Alertify,$uibMo
     //Variables
     $scope.signUpInfo = {
         username: undefined,
-        password: undefined,
-        confirmPassword: undefined
+        password: undefined
     }
 
     $scope.openSign = function (size) {
@@ -71,8 +70,7 @@ app.controller("SignController", function($scope, $http, $state, Alertify,$uibMo
     $scope.signUserUp = function (){
         var data = {
             username: $scope.signUpInfo.username,
-            password: $scope.signUpInfo.password,
-            confirmPassword: $scope.signUpInfo.confirmPassword
+            password: $scope.signUpInfo.password
         }
 
         $http.post('index.php?r=sign/sign', data).success(function(response){
@@ -85,35 +83,14 @@ app.controller("SignController", function($scope, $http, $state, Alertify,$uibMo
             }
             else {
 
-                Alertify.error("Error! Invalid data!");
+                Alertify.error("Error! User with such name exists!");
             }
         }).error(function(error){
             console.error(error);
         });
     };
 
-    $scope.logoutUser = function () {
-        var data = {
-            username: $scope.loginInfo.username,
-            password: $scope.loginInfo.password
-        }
-        $http.post('index.php?r=login/logout', data).success(function(response){
-            console.log(response);
-            if(response != 0){
-                Alertify.success('LOGGED OUT');
-                /*Alertify.success('Success login! Now You will be redirected to the main page!');
-                 $timeout(function(){
-                 window.location.href = "index.php?r=pack/create";
-                 },2000);*/
-            }
-            else {
 
-                Alertify.error('Login so far…');
-            }
-        }).error(function(error){
-            console.error(error);
-        });
-    }
 
 })
 

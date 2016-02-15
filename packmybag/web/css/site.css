@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'Lobster Two';
+    src: url('../fonts/lobstertwo-italic-webfont.eot');
+    src: url('../fonts/lobstertwo-italic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/lobstertwo-italic-webfont.woff2') format('woff2'),
+    url('../fonts/lobstertwo-italic-webfont.woff') format('woff'),
+    url('../fonts/lobstertwo-italic-webfont.ttf') format('truetype'),
+    url('../fonts/lobstertwo-italic-webfont.svg#lobster_twoitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 html,
 body {
     height: 100%;
@@ -222,7 +235,6 @@ a.desc:after {
 
 .pack-button {
     width: 100px;
-    margin-top: 10px;
     font-size: medium;
 }
 
@@ -230,12 +242,14 @@ a.desc:after {
     margin-top: 5px;
 }
 
+
+
 .content-block {
-    text-align: center;
     /*background: url("3.jpg");
     -webkit-background-size: 100%;*/
     font-family: 'Lobster Two', cursive;
-    font-size: x-large;
+    font-size: 16px;
+    font-weight: 100;
 }
 
 .under-bar {
@@ -297,11 +311,11 @@ hr {
 }
 
 .btn-my-sign:hover{
-    background: rgba(26, 161, 157, 0);
-    border: 2px solid #fcfcff;
+    background: #7BB712;
+    border: 2px solid #000000;
     webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
     transition: all 400ms cubic-bezier(.4,0,.2,1);
-    color: #fcfcff;
+    color: #ffffff;
 }
 .btn-log-sign{
     width: 112px;
@@ -311,21 +325,16 @@ hr {
     margin-top: 8px;
 }
 
-.CheckBoxClass,.RadioClass{
-    display: none;
+.ng-invalid.ng-dirty {
+    border-color: red;
 }
-.CheckBoxLabelClass{
-    background: url("UnCheck.png") no-repeat;
-    padding-left: 30px;
-    padding-top: 3px;
-    margin: 5px;
-    height: 28px;
-    width: 150px;
-    display: block;
+
+.style-password {
+    color: grey;
 }
-.CheckBoxLabelClass:hover, .RadioLabelClass:hover{
-    text-decoration: underline;
+
+.tooltip{
+    font-size: 15px;
+
 }
-.LabelSelected{
-    background: url("Check.png") no-repeat;
-}
+

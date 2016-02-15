@@ -47,15 +47,39 @@ AppAsset::register($this);
             ],
         ]);
         ?>
+
+
     <div class="wrap" ng-controller="LoginController">
             <div ng-controller="SignController">
             <?
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    Html::button('Login <span class="glyphicon glyphicon-user"></span>' , [ 'class'=>'btn btn-my-login nav-button', 'ng-click'=>'openLogin()']),
-                    Html::button('Sign Up <i class="fa fa-user-plus"></i>', [ 'class'=>'btn btn-my-sign nav-button', 'ng-click'=>'openSign()']),
-                    Html::button('Logout <i class="fa fa-sign-out"></i>', [ 'class'=>'btn btn-primary nav-button', 'ng-click'=>'logoutUser()'])
+                    Yii::$app->user->isGuest ?
+                        [
+                            'label' => ''
+                        ] :
+                        [ 'label' => 'Travel advices',
+                            'url'=> 'http://www.skyscanner.net/news/50-insider-travel-tips-tricks-what-we-ve-learned-about-travelling',
+                            'linkOptions' => array('data-method' => 'post', 'target' => '_blank'),
+
+                        ],
+
+                    Yii::$app->user->isGuest ?
+                        [
+                            'label' => 'Login',
+                            'options'=> array('ng-click'=>'openLogin()')
+                        ] :
+                        ['label' => 'Logout(' . Yii::$app->user->identity->email .')',
+                            'url'=> '/index.php?r=site/logout',
+                            'linkOptions' => ['data-method' => 'post']
+                            ],
+                    Yii::$app->user->isGuest ?
+                        [
+                            'label' => 'Sign Up',
+                            'options'=> array('ng-click'=>'userSign()')
+                        ] :
+                        ['label' => '']
                 ],
             ]);?>
             </div>
@@ -82,3 +106,5 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
+

@@ -5,10 +5,14 @@ namespace app\controllers;
 use Yii;
 use yii\db\Query;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
+use app\models\LoginForm;
+
 
 class LoginController extends Controller
 {
     public $enableCsrfValidation = false;
+    public $id = null;
 
     public function beforeAction($action)
     {
@@ -22,36 +26,15 @@ class LoginController extends Controller
 
     public function actionLogin(){
 
-        $username = Yii::$app->request->post('username');
-        $password = Yii::$app->request->post('password');
-        $query= new Query();
-        $userInfo = $query->select("email")->from('user')->where(['email'=>$username,'password'=>sha1($password)])->one();
-
-        $id = $query->select("userId")->from('user')->where(['email'=>$username,'password'=>sha1($password)])->one();
-
-        echo json_encode($userInfo);
-
-        if (count($userInfo) == 1){
-            $token = $username . " | " . uniqid() . uniqid() . uniqid();
-            Yii::$app->db->createCommand()
-                ->update('user', array('token'=>$token), array('userId'=>$id))
-                ->execute();
+        $model = new LoginForm();
+        $model->password=Yii::$app->request->post('password');
+        $model->username=Yii::$app->request->post('username');
+        if ($model->login()) {
+            return "true";
         }
-    }
+        else{
+            return "false";
+        }
 
-    public function actionLogout(){
-
-        $username = Yii::$app->request->post('username');
-        $password = Yii::$app->request->post('password');
-        $query= new Query();
-        $id = $query->select("userId")->from('user')->where(['email'=>$username,'password'=>sha1($password)])->one();
-
-        //$token = $query->select("token")->from('user')->where(['email'=>$username,'password'=>sha1($password), 'userId'=>$id])->one();
-
-        $token = Yii::$app->db->createCommand()
-            ->update('user', array('token'=>'LOGOUT'), array('userId'=>$id))
-            ->execute();
-
-        echo json_encode($token);
     }
 }
