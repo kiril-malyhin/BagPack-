@@ -42,9 +42,10 @@ class SignController extends Controller
             echo json_encode('bad');
         }
         else{
+            $authKey = $username . " | " . uniqid() . uniqid() . uniqid();
             Yii::$app->db->createCommand()
                 ->insert('user',
-                    ['email'=>$username,'password'=>sha1($password)])
+                    ['email'=>$username,'password'=>sha1($password), 'authKey'=> $authKey])
                 ->execute();
             echo json_encode('ok');
         }

@@ -26,14 +26,18 @@ class LoginForm extends Model
         $query= new Query();
 
         if ($this->validate()) {
-            $userInfo = $query->select("email")->from('user')->where(['email'=>$this->username,'password'=>sha1($this->password)])->one();
-            if(count($userInfo) == 1){
-                return Yii::$app->user->login($this->getUser() , $this->rememberMe ? 3600*24*30 : 0);
+
+            $identity = User::findIdentity(['email' => $this->username, 'password'=>sha1($this->password)]);
+
+            if(count($identity) == 1){
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
             }else{
                 return false;
             }
         }
+        return false;
     }
+
 
     public function getUser()
     {

@@ -29,6 +29,9 @@ AppAsset::register($this);
 <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,14 +43,11 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
         <?php
         NavBar::begin([
-            'brandLabel' => 'BagPack',
-            'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top',
             ],
         ]);
         ?>
-
 
     <div class="wrap" ng-controller="LoginController">
             <div ng-controller="SignController">
@@ -64,6 +64,15 @@ AppAsset::register($this);
                             'linkOptions' => array('data-method' => 'post', 'target' => '_blank'),
 
                         ],
+                    Yii::$app->user->isGuest ?
+                        [
+                            'label' => ''
+                        ] :
+                        [ 'label' => 'Lists',
+                            'url'=> '/index.php?r=pack/lists',
+                            'linkOptions' => ['data-method' => 'post']
+
+                        ],
 
                     Yii::$app->user->isGuest ?
                         [
@@ -77,9 +86,23 @@ AppAsset::register($this);
                     Yii::$app->user->isGuest ?
                         [
                             'label' => 'Sign Up',
-                            'options'=> array('ng-click'=>'userSign()')
+                            'options'=> array('ng-click'=>'openSign()')
                         ] :
-                        ['label' => '']
+                        ['label' => ''],
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-left'],
+                'items' => [
+                    Yii::$app->user->isGuest ?
+                        [
+                            'label' => 'BagPack',
+                            'url'=> Yii::$app->homeUrl,
+                        ] :
+                        [ 'label' => 'BagPack',
+                            'url'=> '/index.php?r=pack/create'
+
+                        ],
                 ],
             ]);?>
             </div>
@@ -98,7 +121,7 @@ AppAsset::register($this);
         <div class="containerContent">
             <p class="pull-left">&copy; BagPack <?= date('Y') ?></p>
 
-            <p class="pull-right">Made by Kirill Malyhin</p>
+            <p style="padding-right: 60px">Made by Kirill Malyhin</p>
         </div>
     </footer>
 

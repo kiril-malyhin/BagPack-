@@ -1,41 +1,62 @@
 'use strict';
 
-app.controller("myBarCtrl", function($scope,Alertify) {
-    $scope.showStartContent = true;
-    $scope.showChooseContent = false;
+app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout) {
+
+
+    $scope.showChooseContent = true;
     $scope.showListContent = false;
 
-    $scope.bar = {gender: '',
-        temperature: '',
-        period: '',
-        aim: '',
-        transport:''};
+    $scope.bar = {};
 
-    $scope.radioButtonSetValue = function(model, key, value){
-        model[key]=value;
+    $scope.radioButtonSetValue = function(key, value){
+         $scope.bar[key]=value;
         return;
     }
-
-    $scope.$watch('bar', function(newValue, oldValue) {
-
-        for(var i in newValue){
-            if(newValue[i] != ''){
-                $scope.showChooseContent = true;
-                $scope.showStartContent = false;
-                $scope.showListContent = false;
-                break;
-            }
-        }
-    }, true);
 
     $scope.packState = function(){
         $scope.showListContent = true;
         $scope.showChooseContent = false;
     }
 
-    //setTimeout(function(){ Alertify.alert('Choose some filters to see required checkboxes')}, 2000);
+    $scope.$watch('bar', function(newValue, oldValue) {
+
+        for(var i in newValue){
+            if(newValue[i] != ''){
+
+                console.log(newValue);
+                $http.post('index.php?r=stuff/stuffs',{filters:newValue}).success(function(response){
+                    $scope.stuffFilters = response;
+                    console.log(response);
+
+                }).error(function(error){
+                    console.error(error);
+                });
+
+                $scope.showListContent = false;
+                break;
+            }
+        }
+    }, true);
+
+    $http.post('index.php?r=stuff/category').success(function(response){
+
+        for(var i in response){
+            $scope.bar[response.cat_filter_id] = null;
+        }
+        $scope.categories = response;
 
 
+    }).error(function(error){
+        console.error(error);
+    });
+
+    $http.post('index.php?r=stuff/section').success(function(response){
+
+        $scope.sections = response;
+
+    }).error(function(error){
+        console.error(error);
+    });
 
 });
 

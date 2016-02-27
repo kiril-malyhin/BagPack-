@@ -2,6 +2,9 @@
 
 app.controller("LoginController", function($scope, $http, $state, $timeout,Alertify,$uibModal, $log){
 
+
+
+
     $scope.loginInfo = {
         username: undefined,
         password: undefined
@@ -27,7 +30,7 @@ app.controller("LoginController", function($scope, $http, $state, $timeout,Alert
             password: $scope.loginInfo.password
         }
         $http.post('index.php?r=login/login', data).success(function(response){
-
+            $scope.user = response;
             if(response != 'false'){
                 $scope.autoClose();
                 Alertify.success('Success login! Now You will be redirected to the main page!');
