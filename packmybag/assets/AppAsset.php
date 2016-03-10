@@ -20,7 +20,8 @@ class AppAsset extends AssetBundle
     public $css = [
         'js/libs/ng-alertify/dist/ng-alertify.css',
         'css/site.css',
-        'css/animate.css'
+        'css/animate.css',
+        'css/icons.css'
     ];
     public $js = [
         'js/libs/ng-alertify/dist/ng-alertify.js',
@@ -28,6 +29,8 @@ class AppAsset extends AssetBundle
         'js/myApp.js',
         'js/myBarCtrl.js',
         'js/angularModal.js',
+        'js/listCtrl.js',
+        'js/contactCtrl.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

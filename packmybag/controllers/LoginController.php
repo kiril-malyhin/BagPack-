@@ -37,4 +37,36 @@ class LoginController extends Controller
         }
 
     }
+
+    public function actionRestore_password(){
+
+        $email_address = Yii::$app->request->post('restore_password');
+        $myemail = $email_address;
+
+        $query= new Query();
+        if($userInfo = $query->from('user')->where(['user_email'=>$email_address])->exists())
+        {
+            $to = $myemail;
+
+            $email_subject = "Restore mail. Please, don't answer this message.";
+
+            $email_body = "You have received a new message. ".
+
+                " Here are the details:\n Name: Kirill  ".
+
+                " Password: qwerty\n";
+
+            $headers = "From: $myemail\n";
+
+            mail($to,$email_subject,$email_body,$headers);
+
+            echo json_encode(1);
+        }
+        else{
+            echo json_encode(0);
+        }
+
+
+
+    }
 }

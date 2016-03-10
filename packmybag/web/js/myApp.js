@@ -16,7 +16,11 @@ var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify']);
 
     $(function () {
         $("[data-toggle = 'tooltip']").tooltip();
-    })
+    });
+
+
+
+
 
 
 

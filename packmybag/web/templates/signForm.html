@@ -15,6 +15,12 @@
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
+                            <label class="control-label" ><span class="glyphicon glyphicon-pencil"></span> Email</label>
+                            <input type="email" class="form-control" name="user_email" ng-model="signUpInfo.user_email" ng-email="4" placeholder="Enter email (at least 3 symbols)" required>
+                            <p ng-show="signForm.user_email.$error.email" class="help-block">Format: example@example.com</p>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label" name="password"><span class="fa fa-key"></span> Password</label>
                             <input type="password" class="form-control" name="password" ng-model="signUpInfo.password" ng-minlength="4" ng-maxlength="32" placeholder="Enter password (at least 4 symbols)" required>
                             <p ng-show="signForm.password.$error.minlength" class="help-block">Password is too short.</p>
@@ -31,7 +37,7 @@
                         </div>
 
                         <button ng-click="signUserUp()" ng-disabled="signForm.$invalid" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-user-plus"></span>  Sign up</button>
-                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()">Cancel</button>
+                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
                     </form>
                 </div>
             </div>

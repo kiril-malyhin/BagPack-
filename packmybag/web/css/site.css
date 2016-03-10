@@ -10,7 +10,6 @@ body {
 }
 
 .site-index {
-    background: url("home.jpg") no-repeat center;
     min-height: 100%;
     height: 100%;
     background-size: cover;
@@ -42,6 +41,14 @@ body {
     background-size: cover;
 }
 
+.start-page {
+    background: url("18.jpg") no-repeat center;
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
@@ -64,10 +71,11 @@ body {
     color: white;
     text-align: center;
     background-color: transparent;
+    padding-top: 0;
 }
 
 .home-name {
-    padding-top: 50px
+    font-size: 100px;
 }
 .home-start {
     padding-top: 320px
@@ -238,6 +246,8 @@ a.desc:after {
     font-family: Helvetica;
 }
 
+
+
 .fig {
     text-align: center;
 }
@@ -277,7 +287,7 @@ a.desc:after {
     width: 33%;
 }
 
-.show-choose-content {
+.show-list-content {
     padding-bottom: 100px;
 }
 
@@ -303,8 +313,53 @@ hr {
     border-top: 5px solid black;
 }
 
+.hr-lists {
+    margin-top: 29px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid black;
+}
+.hr-contact {
+    margin-top: 29px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid darkblue;
+}
+
+.hr-divider {
+    border: 0;
+    border-top: 3px solid black;
+}
+
+.hr-divider-grey {
+    border: 0;
+    border-top: 3px solid grey;
+}
+
+.hr-visit {
+    border: 0;
+    border-top: 3px solid darkblue;
+}
+.hr-visit-content{
+    padding-right: 43%;
+    padding-left: 43%;
+}
+
+.hr-card {
+    border-top: 3px solid white;
+    padding-bottom: 10px;
+}
+
+.hr-about {
+    border-top: 3px solid white;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
 .name-style {
     font-size: 60px;
+    position: relative;
+    padding: 0 52px 0 10px;
 }
 
 .login-signup {
@@ -315,6 +370,13 @@ hr {
     background: #03ba3e;
     border-radius: 4px;
     border: 2px solid #08ba16;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: white;
+}
+
+.btn-submit {
+    background: darkblue;
     webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
     transition: all 400ms cubic-bezier(.4,0,.2,1);
     color: white;
@@ -347,7 +409,15 @@ hr {
     color: #ffffff;
 }
 .btn-log-sign{
-    width: 112px;
+    width: 49%;
+}
+
+.btn-change-password {
+    width: 55%
+}
+
+.btn-cancel-password {
+    width: 43%;
 }
 
 .nav-button{
@@ -367,201 +437,263 @@ hr {
 
 }
 
-/* go on then, styles go here.. knock yourself out! */
-
-
-
-
-
-.profile-body {
-    height: 100%;
-    background: #486f6f;
-    font-size: 16px;
-    position: relative;
-}
-
-.profile-body:after {
-    position: absolute;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-}
-
-aside {
-    width: 350px;
-    background: transparent;
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
-}
-
-
-
-
-aside:before {
-     content: "";
-     position: absolute;
-     width: 1100px;
-     height: 1100px;
-     background: white;
-     border-radius: 50%;
-     top: 90%;
-     left: 50%;
-     transform: translate3d(-50%, -50%, 0) scale(.025);
-     animation: .5s bounce infinite alternate-reverse;
-     transition: .5s transform ease;
- }
-
-aside:after {
-     content: "";
-     position: absolute;
-     left: 160px;
-     right: 160px;
-     bottom: 0;
-     height: 15px;
-     background: rgba(0,0,0,.5);
-     border-radius: 50%;
-     transition: .3s opacity ease;
-     animation: .5s shadow infinite alternate-reverse;
- }
-
-header {
-    position: relative;
-    display: block;
-}
-header:before {
-     content: "";
-     position: absolute;
-     left: 0;
-     right: 0;
-     height: 200px;
-     background: url("http://balapastudio.co/almond/images/demo/balapa.png") no-repeat;
-     background-size: cover;
-     transform: translate3d(0, -100%, 0);
- }
-
-header:after {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 0;
-     right: 0;
-     height: 200px;
-     background: rgba(0,0,0,.5);
-     transform: translate3d(0, -100%, 0);
- }
-
-a img {
-    width: 100%;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-
-.profile-bio {
-    padding: 5px 20px;
-    box-sizing: border-box;
-    display: block;
-    position: relative;
-    opacity: 1;
-    text-align: center;
-}
-.profile-bio:before {
-     content: "";
-     position: absolute;
-     top: 0;
-     left: 150px;
-     right: 150px;
-     width: 0;
-     height: 1px;
-     background: black;
- }
-
-.profile-bio p {
-    line-height: 1.5;
-    font-size: .95rem;
-    font-weight: 300;
-    color: #666;
-    opacity: 0;
-}
-
-
-.profile-social-links {
-    padding: 0 0 10px;
-    list-style: none;
-    text-align: center;
-}
-.profile-social-links li {
-    display: inline-block;
-    transform: scale(0);
-}
-.profile-social-links a {
-    display: block;
-    width: 30px;
-    margin: 0 5px;
-}
-.profile-bio img {
-    width: 100%;
-}
-
-@keyframes bounce {
-    from {
-        top: 96%;
-    }
-    to {
-        top: 85%;
-    }
-}
-
-@keyframes shadow {
-    from {
-        height: 5px;
-    }
-    to {
-        height: 15px;
-        transform: scale(.5);
-    }
-}
-
-.copyright {
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    font-family: 'Roboto', sans-serif;
-}
-.copyright span {
-    line-height: 36px;
-    color: rgba(255, 255, 255, 0.75);
-    margin-right: 10px;
-    font-weight: 300;
-}
-.copyright span a {
-    font-weight: 400;
-    text-decoration: none;
-    color: #ea4c89;
-}
-.copyright .balapa {
-    width: 30px;
-    height: 30px;
-    display: block;
-    background: url("//s3-us-west-2.amazonaws.com/s.cdpn.io/111167/profile/profile-80_3.jpg");
-    background-size: cover;
-    border-radius: 50%;
-    border: 5px solid rgba(255, 255, 255, 0.75);
-    float: right;
-}
-
-
 .filter-button {
     margin-left: 7px;
     margin-top: 6px;
     margin-right: 7px;
 }
 
+span.tab{
+    padding: 0 5px; /* Or desired space*/
+}
+
+.wish-item{
+    box-shadow: 0 0 15px black !important;
+    height: 200px;
+    width: 360px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.description {
+    width: 100%;
+    border-color: white;
+    border-radius: 5px;
+    color: white;
+    background-color: transparent;
+}
+
+.no-lists {
+    font-size: 50px;
+    color: darkblue;
+}
+
+.credit-card-box .panel-title {
+    display: inline;
+    font-weight: bold;
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+.credit-card-box label.error {
+    font-weight: bold;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+    font-weight: bold;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+/* Just looks nicer */
+.credit-card-box .panel-heading img {
+    min-width: 180px;
+}
+
+.caret {
+    display: none;
+}
+
+.contact-form {
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.visit-index {
+    padding-bottom: 460px;
+    font-family: 'Lobster Two', cursive;
+    font-weight: 100;
+}
+
+.visit-index-start {
+    padding-bottom: 100px;
+    font-family: 'Lobster Two', cursive;
+    font-weight: 100;
+}
+
+.about-index {
+
+    font-family: 'Lobster Two', cursive;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.address-label {
+    font-size: 30px;
+    color: darkblue;
+}
+
+.address-label-start {
+    font-size: 30px;
+    color: white;
+}
+
+.address-info {
+    font-size: 25px;
+    color: darkblue;
+
+}
+.address-info-start {
+    font-size: 25px;
+    color: white;
+
+}
+
+.about-info {
+    font-size: 30px;
+    color: white;
+    font-family: 'Lobster Two', cursive;
+    font-weight: 100;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.address-info-container{
+    text-align: left;
+    padding-left: 15%;
+}
+
+#map {
+    height: 240px;
+    width: 480px;
+}
+
+.contact-start {
+    color: white;
+    font-family: 'Lobster Two', cursive;
+    font-weight: 100;
+}
+
+.btn-state {
+    position: absolute;
+    right: 80px;
+    top: 50px;
+}
+
+.label-pos {
+    padding-right: 100px;
+    padding-top: 20px;
+}
+
+.arrow-pos {
+    padding-left: 20px;
+    padding-top: 20px;
+    position: absolute;
+    left: 0;
+    top: 15px;
+}
+
+.content-style {
+    padding-left: 15px;
+}
+
+@media (min-width:768px) and (max-width: 979px){
+    .pack-index .row {
+        display: block;
+        width: auto;
+        height: auto;
+    }
+
+    .pack-index .row > [class*='col-'] {
+        display: block;
+        width: auto;
+    }
+    [ng-show="showChooseContent"]  .form-group, [ng-show="showListContent"]  .form-group{
+        display: block;
+    }
+
+    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'] {
+        width: auto;
+    }
+
+
+    .btn-state {
+        position: static;
+        display: block;
+        text-align: center;
+    }
+
+    .btn-state > .btn {
+        float: none;
+    }
+
+    .label-pos {
+        padding-right: 0;
+        padding-top: 20px;
+    }
+
+    .content-style {
+        padding-left: 5%;
+    }
+
+    .arrow-pos {
+        padding-top: 20px;
+    }
+
+
+}
+
+@media (max-width:767px){
+    .pack-index .row {
+        display: block;
+        width: auto;
+        height: auto;
+    }
+
+    .pack-index .row > [class*='col-'] {
+        display: block;
+    }
+    [ng-show="showChooseContent"]  .form-group, [ng-show="showListContent"]  .form-group{
+        display: block;
+    }
+
+    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'] {
+        width: auto;
+    }
+
+
+   .btn-state {
+       position: static;
+       display: block;
+       text-align: center;
+    }
+
+   .btn-state > .btn {
+       float: none;
+   }
+
+    .label-pos {
+        padding-right: 0;
+        padding-top: 20px;
+    }
+
+    .content-style {
+        padding-left: 5%;
+    }
+
+    .arrow-pos {
+        padding-top: 20px;
+    }
+
+
+}

@@ -3,19 +3,13 @@
 namespace app\controllers;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\db\Query;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\bootstrap\Alert;
 
 
 class SignController extends Controller
 {
-
     public $enableCsrfValidation = false;
-
     public function beforeAction($action)
     {
         $data = json_decode(file_get_contents("php://input"),true);
@@ -30,11 +24,14 @@ class SignController extends Controller
 
         $username = Yii::$app->request->post('username');
         $password = Yii::$app->request->post('password');
+        $user_email = Yii::$app->request->post('user_email');
 
         $query= new Query();
-        if($userInfo = $query->from('user')->where(['email'=>$username])->exists()
+        if($userInfo = $query->from('user')->where(['email'=>$username, 'user_email'=> $user_email])->exists()
             || $username == ""
             || $password ==""
+            || $user_email==""
+            || strlen($user_email) < 4
             || strlen($password) < 4
             || strlen($username) < 6
         )
@@ -45,7 +42,7 @@ class SignController extends Controller
             $authKey = $username . " | " . uniqid() . uniqid() . uniqid();
             Yii::$app->db->createCommand()
                 ->insert('user',
-                    ['email'=>$username,'password'=>sha1($password), 'authKey'=> $authKey])
+                    ['email'=>$username,'password'=>sha1($password), 'user_email'=> $user_email, 'authKey'=> $authKey])
                 ->execute();
             echo json_encode('ok');
         }

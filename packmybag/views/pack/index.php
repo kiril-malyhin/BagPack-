@@ -6,10 +6,10 @@ $this->title = 'BagPack';
 ?>
 
 <div class="pack-index" ng-controller="myBarCtrl">
-    <div class="row" >
+    <div class="row" style=" cursor: pointer" >
         <div class="col-md-2 bar-st clearfix" style="color: white" >
             <div class="choose-bar-block" >
-                <div class="center-block"><h2>Choose your travel options</h2></div>
+                <div class="center-block animated pulse infinite"><h2>Choose your travel options</h2></div>
                 <hr>
                 <div ng-repeat="category in categories">
                     <h4>{{category.cat_filter_name}}</h4>
@@ -33,60 +33,57 @@ $this->title = 'BagPack';
         </div>
 
         <div class="col-md-10">
-            <div ng-show="showStartContent" class="content-block center-block">
-                <div class="name-style">Lets start packing</div>
-                <div class="hr-black"></div>
-                <p class="fig"><img src="css/3.jpg" width="900" height="700"></p>
-            </div>
-
             <div ng-show="showChooseContent" class="show-choose-content clearfix animated fadeInRightBig">
                 <div class="row" style="position: relative">
-                    <div class="name-style content-block center-block" style="padding-right: 100px">Packing list</div>
-                    <div class="btn-group" style="position: absolute;right: 80px;top: 30px;">
-                        <button type="button" class="btn btn-my-sign pack-button" ng-click="packState()">Pack now</button>
+                    <div class="name-style content-block center-block label-pos">Packing list</div>
+
+                    <div class="btn-group btn-state">
+                        <button type="button" class="btn btn-my-sign pack-button " ng-click="packState()">Pack now</button>
                     </div>
                 </div>
                 <div class="hr-black"></div>
-                <div class="form-group col-md-4" ng-repeat="section in sections">
+                <div class="form-group col-md-4 content-style" ng-repeat="section in sections">
                     <div class="content-block">
                         {{section.section_name}}
                     </div>
-                    <div ng-repeat="stuffs in section.stuffs">
 
-                        <input type="checkbox" >{{stuffs.stuff_name}}
+                    <div ng-show="startStuffs">
+                        <div ng-repeat="stuffs in section.stuffs"  style="font-size: 15px">
+                            <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
+                        </div>
+                    </div>
+
+                    <div ng-show="filteringStuffs">
+                            <div ng-repeat="stuffs in section.stuffs"  style="font-size: 15px"  ng-show="checkItem(stuffs)">
+                                <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
+                            </div>
                     </div>
                 </div>
             </div>
 
-            <div ng-show="showListContent" class="show-list-content clearfix">
-
+            <div ng-show="showListContent" class="show-list-content clearfix" ng-controller="NewListController" >
                 <div class="row" style="position: relative">
-                    <div class="name-style content-block center-block" style="padding-right: 100px">List</div>
-                    <div class="btn-group" style="position: absolute;right: 80px;top: 30px;">
-                        <button type="button" class="btn btn-my-sign pack-button dropdown-toggle" data-toggle="dropdown">Save<span class="caret"></span></button>
+                    <div class="name-style content-block center-block label-pos"><i class="fa fa-arrow-left arrow-pos" ng-click="backToChoose()"></i>List</div>
+                    <div class="btn-group btn-state">
+                        <button type="button" class="btn btn-my-sign pack-button" data-toggle="dropdown">Save<span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">PDF  <span class="glyphicon glyphicon-floppy-disk"></span></a></li>
                             <li><a href="#">Print  <span class="glyphicon glyphicon-print"></span></a></li>
                             <li class="divider"></li>
-                            <li><a href='index.php?r=pack/lists'>List <span class="glyphicon glyphicon-list"></span></a></li>
+                            <li><a ng-click="openList()" >New <span class="glyphicon glyphicon-list"></span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="hr-black"></div>
-
-                <div class="form-group col-md-4" ng-repeat="section in sections">
-                    <div >
-                        <div class="content-block">
-                            {{section.section_name}}
-                            <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Click to add new stuff"></i>
-                        </div>
-                        <div class="squaredTwo" ng-repeat="stuffs in section.stuffs">
-                            <input type="checkbox" id="squaredTwo">{{stuffs.stuff_name}}
-                        </div>
-
+                <div class="form-group col-md-4 content-style" ng-repeat="section in sections">
+                    <div class="content-block">
+                        {{section.section_name}}
+                        <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Click to add new stuff"></i>
+                    </div>
+                    <div ng-repeat="stuffs in section.stuffs">
+                        <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

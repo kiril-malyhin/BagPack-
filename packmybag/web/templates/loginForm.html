@@ -23,13 +23,27 @@
                             <span class="help-block"></span>
                         </div>
                         <div class="checkbox">
-                            <label>
+                            <label style="padding-top: 5px">
                                 <input type="checkbox" value="" checked> Remember User
                             </label>
-                            <p class="help-block">(if this is a private computer)</p>
+                            <button type="button" class="btn btn-info btn-sm pull-right" ng-click="isCollapsed = !isCollapsed">Forgot password?</button>
+                            <div uib-collapse="isCollapsed" style="padding-top: 20px">
+                                <div class="input-group">
+                                    <input type="email"  ng-email="4" name="restore" ng-model="loginInfo.restore_password" class="form-control" placeholder="Enter email"
+                                           uib-popover="Enter your registered address and click Send .
+                                           We will send you an e-mail message with password."
+                                           popover-trigger="mouseenter" aria-describedby="basic-addon1">
+
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="restorePassword()">Send</button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <button ng-click="loginUser()" ng-disabled="loginForm.$invalid" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-sign-in"></span>  Login</button>
-                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()">Cancel</button>
+                        <div style="padding-top: 20px">
+                            <button ng-click="loginUser()" ng-disabled="loginForm.$invalid"  class="btn btn-success btn-log-sign" type="button"><span class="fa fa-sign-in"></span>  Login</button>
+                            <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
+                        </div>
                     </form>
 
                 </div>
