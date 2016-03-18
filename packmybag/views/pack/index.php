@@ -35,53 +35,94 @@ $this->title = 'BagPack';
         <div class="col-md-10">
             <div ng-show="showChooseContent" class="show-choose-content clearfix animated fadeInRightBig">
                 <div class="row" style="position: relative">
-                    <div class="name-style content-block center-block label-pos">Packing list</div>
+                    <div class="name-style content-block center-block label-pos">
+                        <i class="fa fa-check check-all-pos pull-left" ng-show="checkAllItems"
+                           tooltip-placement="bottom" uib-tooltip="Check all" ng-click="checkAll()">
+                        </i>
+                        <i class="fa fa-close check-all-pos pull-left" ng-show="unCheckAllItems"
+                           tooltip-placement="bottom" uib-tooltip="Uncheck all" ng-click="unCheckAll()">
+                        </i>
+                        <i class="fa fa-refresh refresh " ng-click="refreshPackingList()"
+                           tooltip-placement="bottom-left" uib-tooltip="Click to refresh list of stuffs">
+                        </i>
 
+
+                        Packing list
+                    </div>
                     <div class="btn-group btn-state">
-                        <button type="button" class="btn btn-my-sign pack-button " ng-click="packState()">Pack now</button>
+                        <button type="button" class="btn btn-my-sign pack-button" ng-click="packState()">Pack now</button>
                     </div>
                 </div>
                 <div class="hr-black"></div>
-                <div class="form-group col-md-4 content-style" ng-repeat="section in sections">
-                    <div class="content-block">
+                <div class="form-group col-md-4 content-style" ng-repeat="section in sections" >
+                    <div class="content-block" ng-hide="isSectionHidden(section)">
                         {{section.section_name}}
                     </div>
 
                     <div ng-show="startStuffs">
                         <div ng-repeat="stuffs in section.stuffs"  style="font-size: 15px">
-                            <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
+                            <label style="font-weight: 400; cursor: pointer;">
+                                <input type="checkbox"
+                                       ng-model="stuffs.selected"
+                                       ng-click="selectStuff(stuffs)"
+                                value="{{stuffs.stuff_name}}"
+                                       ng-checked="checkedItems.indexOf(stuffs) != -1">
+                                <span class="tab">
+
+                                </span>{{stuffs.stuff_name}}
+                            </label>
                         </div>
+
                     </div>
 
                     <div ng-show="filteringStuffs">
-                            <div ng-repeat="stuffs in section.stuffs"  style="font-size: 15px"  ng-show="checkItem(stuffs)">
-                                <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
-                            </div>
+                        <div ng-repeat="stuffs in section.stuffs" style="font-size: 15px" ng-hide = "checkItem(stuffs)">
+                            <label style="font-weight: 400; cursor: pointer;">
+                                <input type="checkbox"
+                                       ng-model="stuffs.selected"
+                                       ng-click="selectStuff(stuffs)"
+                                       value="{{stuffs.stuff_name}}"
+                                       ng-checked="checkedItems.indexOf(stuffs) != -1">
+                                <span class="tab"></span>{{stuffs.stuff_name}}
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div ng-show="showListContent" class="show-list-content clearfix" ng-controller="NewListController" >
+            <div ng-show="showListContent" class="show-list-content clearfix animated fadeInRightBig" >
                 <div class="row" style="position: relative">
                     <div class="name-style content-block center-block label-pos"><i class="fa fa-arrow-left arrow-pos" ng-click="backToChoose()"></i>List</div>
                     <div class="btn-group btn-state">
                         <button type="button" class="btn btn-my-sign pack-button" data-toggle="dropdown">Save<span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">PDF  <span class="glyphicon glyphicon-floppy-disk"></span></a></li>
-                            <li><a href="#">Print  <span class="glyphicon glyphicon-print"></span></a></li>
+                            <li><a ng-click="saveToPdf()" >PDF  <span class="glyphicon glyphicon-floppy-disk"></span></a></li>
+                            <li><a ng-click="printList()"  >Print  <span class="glyphicon glyphicon-print"></span></a></li>
                             <li class="divider"></li>
                             <li><a ng-click="openList()" >New <span class="glyphicon glyphicon-list"></span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="hr-black"></div>
-                <div class="form-group col-md-4 content-style" ng-repeat="section in sections">
+                <div class="form-group col-md-4 content-style" ng-repeat="section in sections" >
                     <div class="content-block">
                         {{section.section_name}}
-                        <i class="fa fa-plus-circle" data-toggle="tooltip" data-placement="top" title="Click to add new stuff"></i>
+                        <i class="fa fa-plus-circle" ng-click="openNewStuff()"
+                           tooltip-placement=top}" uib-tooltip="Click to add new stuff">
+                        </i>
+                        <div class="no-items">
+                            <div ng-show="noStuffsInSection(section)" ng-model="section.section_name">No checked items</div>
+                        </div>
                     </div>
-                    <div ng-repeat="stuffs in section.stuffs">
-                        <input type="checkbox" ><span class="tab"></span>{{stuffs.stuff_name}}
+                    <div ng-repeat="stuffs in section.stuffs" ng-show="stuffs.selected">
+                        <label style="font-weight: 400; cursor: pointer;">
+                            <input type="checkbox"
+                                    ng-model="stuffs.selected"
+                                    value="{{stuffs.stuff_name}}"
+                                    ng-checked="checkedItems.indexOf(stuffs) != -1"
+                                    ng-click="unSelectStuff(stuffs)">
+                            <span class="tab"></span>{{stuffs.stuff_name}}
+                        </label>
                     </div>
                 </div>
             </div>

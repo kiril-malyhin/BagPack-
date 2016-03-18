@@ -27,6 +27,8 @@ class ListController extends Controller
 
         $listname=Yii::$app->request->post('listname');
         $description=Yii::$app->request->post('description');
+        $items = Yii::$app->request->post('selectedItems');
+
 
         $query= new Query();
         if($listInfo = $query->from('user_list')->where(['list_name'=>$listname,'userId'=>Yii::$app->user->id])->exists())
@@ -37,7 +39,7 @@ class ListController extends Controller
 
             Yii::$app->db->createCommand()
                 ->insert('user_list',
-                    ['list_name'=>$listname, 'list_description'=> $description, 'userId'=> Yii::$app->user->id])
+                    ['list_name'=>$listname,'list_data'=>json_encode($items), 'list_description'=> $description, 'userId'=> Yii::$app->user->id])
                 ->execute();
             echo json_encode('ok');
         }
@@ -70,5 +72,31 @@ class ListController extends Controller
         }
 
     }
+
+    public function actionCurrent_list(){
+
+        $query= new Query();
+        $list_id = Yii::$app->request->post('listId');
+        $listInfo = $query->from('user_list')->select(['list_data'])->where(['userId'=>Yii::$app->user->id, 'list_id'=>$list_id])->all();
+
+        echo json_encode($listInfo);
+    }
+
+    public function actionSection()
+    {
+
+        $query = new Query();
+
+        $records=$query->select(['section.section_id','section_name','stuff_id','stuff_name'])->from('section')
+            ->join('JOIN ','stuff','section.section_id=stuff.section_id')->all();
+        $result=[];
+        foreach($records as $record) {
+            $result[$record['section_id']]['section_name']=$record['section_name'];
+            $result[$record['section_id']]['stuffs'][]=['stuff_id'=>$record['stuff_id'],'stuff_name'=>$record['stuff_name']];
+        }
+
+        return json_encode($result);
+    }
+
 }
 

@@ -117,45 +117,7 @@ app.controller("SignController", function($scope, $http, $state, Alertify,$uibMo
         });
     };
 
-})
-
-app.controller("NewListController", function($scope, $http, $state, Alertify,$uibModal, $log) {
-
-    $scope.listInfo = {
-        listname: undefined,
-        description: undefined
-    }
-
-    $scope.openList = function (size) {
-        var modalInstance = $uibModal.open({
-
-            templateUrl: 'templates/newListForm.html',
-            controller: 'ModalInstanceCtrl',
-            size: 'sm'
-        });
-    };
-
-    $scope.newList = function (){
-        var data = {
-            listname: $scope.listInfo.listname,
-            description: $scope.listInfo.description
-        }
-
-        $http.post('index.php?r=list/create_list', data).success(function(response){
-
-            if(JSON.parse(response) != "bad"){
-                $scope.autoClose();
-                Alertify.success('List successfully created!');
-            }
-            else {
-
-                Alertify.error("Error! List with such name exists!");
-            }
-        }).error(function(error){
-            console.error(error);
-        });
-    };
-})
+});
 
 app.controller("PasswordController", function($scope, $http, $state, Alertify,$uibModal, $log) {
 
@@ -204,7 +166,7 @@ app.controller("PaymentController", function($scope, $http, $state, Alertify,$ui
 
             templateUrl: 'templates/paymentForm.html',
             controller: 'ModalInstanceCtrl',
-            size: size
+            size: 'sm'
         });
 
     };

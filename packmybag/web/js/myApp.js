@@ -18,6 +18,16 @@ var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify']);
         $("[data-toggle = 'tooltip']").tooltip();
     });
 
+    app.factory('theService', function(){
+        return {
+            thing: {
+                x: 100
+            }
+        };
+    });
+
+
+
 
 
 

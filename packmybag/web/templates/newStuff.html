@@ -1,0 +1,20 @@
+
+    <div class="modal-header">
+        <h3 class="modal-title">Add stuff</h3>
+    </div>
+    <div class="modal-body">
+        <form id="newListForm" method="POST" name="addStuffForm" novalidate>
+
+            <div class="form-group">
+                <label class="control-label"><span class="glyphicon glyphicon-pencil"></span>  Stuff name</label>
+                <input type="text" name="stuffName" class="form-control" placeholder="Enter stuff name"
+                       ng-model="stuffInfo.stuffName" ng-minlength="1" ng-maxlength="32" required>
+                <p ng-show="addStuffForm.stuffName.$error.minlength" class="help-block">Stuff name is too short.</p>
+                <p ng-show="addStuffForm.stuffName.$error.maxlength" class="help-block">Stuff name is too long.</p>
+                <span class="help-block"></span>
+            </div>
+
+            <button type="button" ng-click="addStuff(section.section_name)" ng-disabled="addStuffForm.$invalid" class="btn btn-success btn-log-sign"><i class="fa fa-floppy-o"></i> Add</button>
+            <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
+        </form>
+    </div>

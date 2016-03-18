@@ -12,6 +12,8 @@ app.controller("contactCtrl", function($scope,Alertify, $http) {
 
     $scope.contactUs = function (){
 
+
+
         var data = {
 
             first_name: $scope.contactInfo.first_name,
@@ -25,7 +27,7 @@ app.controller("contactCtrl", function($scope,Alertify, $http) {
 
             if(JSON.parse(response) != "bad"){
 
-                Alertify.success('Email successfully sended!');
+                Alertify.alert('Email successfully sent! Please, check Your mail and follow the instructions');
 
                 $scope.contactInfo = {
                     first_name: undefined,
@@ -36,7 +38,7 @@ app.controller("contactCtrl", function($scope,Alertify, $http) {
             }
             else {
 
-                Alertify.error("Error! Email was not sended!");
+                Alertify.error("Error! Email was not sent!");
             }
         }).error(function(error){
             console.error(error);

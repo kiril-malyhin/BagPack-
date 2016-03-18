@@ -17,5 +17,9 @@ class PackController extends Controller{
         return $this->render("lists");
     }
 
+    public function actionOpen_packing_list(){
+        return $this->render('packingList');
+    }
+
 }
 

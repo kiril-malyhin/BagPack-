@@ -62,11 +62,12 @@ class StuffController extends Controller{
     {
         $query = new Query();
 
-
-        $records=$query->select(['filter_stuff.filter_id','filter_stuff.stuff_id'])->from('filter_stuff')
-            ->all();
+        $records=$query->select(['filters.cat_filter_id','filters.filter_name','filter_stuff.filter_id','filter_stuff.stuff_id'])->from('filter_stuff')
+            ->join('JOIN ','filters','filter_stuff.filter_id=filters.filter_id')->all();
 
         return json_encode($records);
     }
+
+
 
 }

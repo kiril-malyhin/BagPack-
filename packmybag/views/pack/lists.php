@@ -3,46 +3,56 @@
 $this->title = 'BagPack';
 ?>
 
-<div class="profile-body" ng-controller="listCtrl" style="padding-top: 70px; padding-bottom: 100px;background-color: #fab136; height: 100%; min-height: 100%">
+<div class="profile-body" ng-controller="listCtrl" style="padding-top: 70px; padding-bottom: 100px;background-color: #110433;min-height: 100%">
     <div class="container">
         <div class="row">
-            <div class="name-style content-block center-block" style="color: darkblue">Lists</div>
+            <div class="name-style content-block center-block" style="color: white">Lists</div>
             <div class="hr-contact"></div>
             <br>
 
             <div ng-if="!lists || lists.length < 1" style="text-align: center" class="no-lists">
                 No lists found.
             </div>
-            <div class="col-md-4" ng-repeat="list in lists">
-                <div class="card card-inverse wish-item" style="background-color: darkblue; border-color: black;">
+            <div class="col-md-3"  ng-repeat="list in lists">
+                <div class="card card-inverse wish-item"  style="background-color: #165475; border-color: black;">
                     <div class="card-block">
-
                         <div style="display: inline">
-                            <h2 class="card-title" data-toggle="tooltip" data-placement="top"  title="Click to open list">{{list.list_name}}
-                                <div class="pull-right">
-                                    <button class="btn btn-primary btn-xs"
-                                            data-toggle="tooltip" data-placement="top"
-                                            title="Edit"
-                                            data-title="Edit">
-                                        <span class="glyphicon glyphicon-pencil"></span>
+                            <div class="content-block">
+                                <h1 style="color: white; text-align: center">{{list.list_name}}</h1>
+                                <h2 class="card-title">
+                                    <button class="btn btn-default " style=";color: white;background-color: transparent"
+                                        data-placement="top"
+                                        tooltip-placement="top-left"
+                                        uib-tooltip="Open list"
+                                        ng-click="packList(list.list_id)">Pack
                                     </button>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary btn-xs"
+                                                data-placement="top"
+                                                tooltip-placement="top" uib-tooltip="Edit"
+                                                ng-click="">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
 
-                                    <button class="btn btn-danger btn-xs"
-                                            data-title="Delete"
-                                            data-placement="top"
-                                             ng-click="deleteList(list.list_id)">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </div>
-                            </h2>
+                                        <button class="btn btn-danger btn-xs"
+                                                data-placement="top"
+                                                tooltip-placement="top" uib-tooltip="Delete"
+                                                 ng-click="deleteList(list.list_id)">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </div>
+                                </h2>
+                            </div>
+                            <div class="card-img" alt="Card image">
                         </div>
-                        <br>
+                        <label style="color: white;font-family: 'Lobster Two', cursive;font-size: 20px;">Description:</label>
                         <textarea class="description" disabled="disabled"  rows="3" >{{list.list_description}}</textarea>
                     </div>
                 </div>
                 <br>
             </div>
-
+                <div style="padding-bottom: 25px"></div>
         </div>
+
     </div>
 </div>
