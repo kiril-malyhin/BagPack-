@@ -65,75 +65,76 @@ AppAsset::register($this);
         <div ng-controller="SignController">
             <div ng-controller="PasswordController">
                 <div ng-controller="PaymentController">
-                <?
+                    <div ng-controller="contactCtrl">
+                    <?
 
-                echo Nav::widget([
-                    'options' => ['class' => 'navbar-nav navbar-right'],
-                    'items' => [
+                    echo Nav::widget([
+                        'options' => ['class' => 'navbar-nav navbar-right'],
+                        'items' => [
 
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => ''
-                            ] :
-                            [ 'label' => 'Lists',
-                                'url' => '/index.php?r=pack/showlists',
-                                'linkOptions' => ['data-method' => 'post']
-                            ],
-
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => ''
-                            ] :
-                            [  'label' => 'Profile',
-                                '<b disabled="caret"></b>',
-                                'items' => [
-                                    ['label' => 'Change Password','url' => '#', 'options'=> array('ng-click'=>'openChangePassword()')],
-                                    '<li class="divider"></li>',
-                                    ['label' => 'Buy Premium Account','url' => '#', 'options'=> array('ng-click'=>'openPremiumAccount()')],
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => ''
+                                ] :
+                                [ 'label' => 'Lists',
+                                    'url' => '/index.php?r=pack/showlists',
+                                    'linkOptions' => ['data-method' => 'post']
                                 ],
-                            ],
 
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => ''
-                            ] :
-                            [ 'label' => 'Contacts',
-                                'url'=> '/index.php?r=site/contact',
-                                'linkOptions' => ['data-method' => 'post']
-
-                            ],
-
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => 'Login',
-                                'options'=> array('ng-click'=>'openLogin()')
-                            ] :
-                            ['label' => 'Logout(' . Yii::$app->user->identity->email .')',
-                                'url'=> '/index.php?r=site/logout',
-                                'linkOptions' => ['data-method' => 'post']
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => ''
+                                ] :
+                                [  'label' => 'Profile',
+                                    '<b disabled="caret"></b>',
+                                    'items' => [
+                                        ['label' => 'Change Password','url' => '#', 'options'=> array('ng-click'=>'openChangePassword()')],
+                                        '<li class="divider"></li>',
+                                        ['label' => 'Buy Premium Account','url' => '#', 'options'=> array('ng-click'=>'openPremiumAccount()')],
+                                    ],
                                 ],
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => 'Sign Up',
-                                'options'=> array('ng-click'=>'openSign()')
-                            ] :
-                            ['label' => ''],
-                    ],
-                ]);
-                echo Nav::widget([
-                    'options' => ['class' => 'navbar-nav navbar-left'],
-                    'items' => [
-                        Yii::$app->user->isGuest ?
-                            [
-                                'label' => 'BagPack',
-                                'url'=> Yii::$app->homeUrl,
-                            ] :
-                            [ 'label' => 'BagPack',
-                                'url'=> '/index.php?r=pack/create'
 
-                            ],
-                    ],
-                ]);?>
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => ''
+                                ] :
+                                [ 'label' => 'Contacts',
+                                    'options'=> array('ng-click'=>'openContact()')
+
+                                ],
+
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => 'Login',
+                                    'options'=> array('ng-click'=>'openLogin()')
+                                ] :
+                                ['label' => 'Logout(' . Yii::$app->user->identity->email .')',
+                                    'url'=> '/index.php?r=site/logout',
+                                    'linkOptions' => ['data-method' => 'post']
+                                    ],
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => 'Sign Up',
+                                    'options'=> array('ng-click'=>'openSign()')
+                                ] :
+                                ['label' => ''],
+                        ],
+                    ]);
+                    echo Nav::widget([
+                        'options' => ['class' => 'navbar-nav navbar-left'],
+                        'items' => [
+                            Yii::$app->user->isGuest ?
+                                [
+                                    'label' => 'BagPack',
+                                    'url'=> Yii::$app->homeUrl,
+                                ] :
+                                [ 'label' => 'BagPack',
+                                    'url'=> '/index.php?r=pack/create'
+
+                                ],
+                        ],
+                    ]);?>
+                    </div>
                 </div>
             </div>
         </div>

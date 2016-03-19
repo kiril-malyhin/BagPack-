@@ -1,0 +1,65 @@
+
+
+<div class="modal-header">
+    <h3 class="modal-title">Contact us</h3>
+</div>
+<div class="modal-body">
+
+    <form id="contactForm" method="POST" name="contactForm" novalidate>
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="first_name" placeholder="Enter name" ng-minlength="6"
+                       ng-maxlength="32" ng-model="contactInfo.first_name" required>
+            </div>
+            <p ng-show="contactForm.first_name.$error.minlength" class="help-block" >Name is too short.</p>
+            <p ng-show="contactForm.first_name.$error.maxlength" class="help-block" >Name is too long.</p>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-building"></i></span>
+                <input type="text" class="form-control" name="company" placeholder="Company" aria-describedby="basic-addon2"
+                       ng-minlength="3" ng-maxlength="64" ng-model="contactInfo.company" required>
+            </div>
+            <p ng-show="contactForm.company.$error.minlength" class="help-block" >Company name is too short.</p>
+            <p ng-show="contactForm.company.$error.maxlength" class="help-block" >Company name is too long.</p>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">@</span>
+                <input type="email" class="form-control" name="email" placeholder="Email" aria-describedby="basic-addon2"
+                       ng-email="4" ng-model="contactInfo.email" required>
+            </div>
+            <p ng-show="contactForm.email.$error.email" class="help-block">Format: example@example.com</p>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <input type="number" class="form-control" name="phone" ng-model="contactInfo.phone"
+                       placeholder="Phone" aria-describedby="basic-addon2" required>
+            </div>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+             <textarea name="comments" class="form-control" ng-model="contactInfo.comments"
+                       placeholder="Message text"
+                       rows="4"
+                       ng-minlength="5" ng-maxlength="1024" required>
+            </textarea>
+            <span class="help-block"></span>
+        </div>
+        <button type="button" class="btn btn-success"
+                ng-disabled="contactForm.$invalid" ng-click="contactUs()"> Submit
+        </button>
+        <button class="btn btn-danger pull-right" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
+    </form>
+</div>
+

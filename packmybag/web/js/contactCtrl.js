@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("contactCtrl", function($scope,Alertify, $http) {
+app.controller("contactCtrl", function($scope, $http, $state, $timeout,Alertify,$uibModal) {
 
     $scope.contactInfo = {
         first_name: undefined,
@@ -9,42 +9,58 @@ app.controller("contactCtrl", function($scope,Alertify, $http) {
         comments: undefined
     };
 
+    $scope.openContact = function (size) {
+        var modalInstance = $uibModal.open({
 
-    $scope.contactUs = function (){
+            templateUrl: 'templates/contactForm.html',
+            controller: function ($scope, $uibModalInstance) {
 
+                $scope.Cancel = function () {
+                    $uibModalInstance.dismiss('Cancel');
+                };
 
+                $scope.autoClose = function () {
+                    $uibModalInstance.dismiss('Cancel');
+                };
 
-        var data = {
+                $scope.contactUs = function (){
+                    var data = {
 
-            first_name: $scope.contactInfo.first_name,
-            company: $scope.contactInfo.company,
-            email: $scope.contactInfo.email,
-            phone: $scope.contactInfo.phone,
-            comments: $scope.contactInfo.comments
-        };
+                        first_name: $scope.contactInfo.first_name,
+                        company: $scope.contactInfo.company,
+                        email: $scope.contactInfo.email,
+                        phone: $scope.contactInfo.phone,
+                        comments: $scope.contactInfo.comments
+                    };
 
-        $http.post('index.php?r=site/contact_us', data).success(function(response){
+                    $http.post('index.php?r=site/contact_us', data).success(function(response){
 
-            if(JSON.parse(response) != "bad"){
+                        if(JSON.parse(response) != "bad"){
 
-                Alertify.alert('Email successfully sent! Please, check Your mail and follow the instructions');
+                            $scope.autoClose();
 
-                $scope.contactInfo = {
-                    first_name: undefined,
-                    last_name: undefined,
-                    email: undefined,
-                    comments: undefined
-                }
-            }
-            else {
+                            Alertify.alert('Email successfully sent! Please, check Your mail and follow the instructions');
 
-                Alertify.error("Error! Email was not sent!");
-            }
-        }).error(function(error){
-            console.error(error);
+                            $scope.contactInfo = {
+                                first_name: undefined,
+                                last_name: undefined,
+                                email: undefined,
+                                comments: undefined
+                            }
+                        }
+                        else {
+
+                            Alertify.error("Error! Email was not sent!");
+                        }
+                    }).error(function(error){
+                        console.error(error);
+                    });
+                };
+            },
+            size: 'sm'
         });
 
-
     };
+
 
 });

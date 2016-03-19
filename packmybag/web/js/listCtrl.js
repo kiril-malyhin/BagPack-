@@ -12,13 +12,12 @@ app.controller("listCtrl", function($scope,Alertify, $http) {
 
     $scope.packList = function(list_id){
         window.location.href = "index.php?r=pack/open_packing_list";
-        //window.location.href = "index.php?r=pack/open_packing_list&listId="+list_id;
-
-        /*$http.post('index.php?r=list/current_list', {list_id: list_id}).success(function(response){
+        console.log(list_id);
+        $http.post('index.php?r=list/current_list').success(function(response){
 
         }).error(function(error){
             console.error(error);
-        });*/
+        });
     };
 
     $scope.deleteList = function (list_id){

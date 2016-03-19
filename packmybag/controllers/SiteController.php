@@ -88,11 +88,6 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionContact()
-    {
-        return $this->render('contact');
-    }
-
     public function actionChange_password(){
 
         $old_password=Yii::$app->request->post('password');
@@ -123,9 +118,6 @@ class SiteController extends Controller
         $company = Yii::$app->request->post('company');
         $phone = Yii::$app->request->post('phone');
 
-        if( empty($errors))
-
-        {
             $to = $myemail;
 
             $email_subject = "Contact form submission: $name";
@@ -145,8 +137,6 @@ class SiteController extends Controller
             mail($to,$email_subject,$email_body,$headers);
 
             echo json_encode('ok');
-
-        }
 
     }
 
