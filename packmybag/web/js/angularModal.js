@@ -27,7 +27,8 @@ app.controller("LoginController", function($scope, $http, $state, $timeout,Alert
     $scope.restorePassword = function() {
         var data = {
             restore_password: $scope.loginInfo.restore_password
-        }
+        };
+
         $http.post('index.php?r=login/restore_password', data).success(function(response){
             console.log(response);
             if(response == 1){
@@ -49,8 +50,9 @@ app.controller("LoginController", function($scope, $http, $state, $timeout,Alert
     $scope.loginUser = function () {
         var data = {
             username: $scope.loginInfo.username,
-            password: $scope.loginInfo.password
-        }
+            password: $scope.loginInfo.password,
+            rememberUser: $scope.loginInfo.rememberUser
+        };
         $http.post('index.php?r=login/login', data).success(function(response){
             $scope.user = response;
             if(response != 'false'){

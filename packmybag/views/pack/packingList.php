@@ -12,27 +12,18 @@ $this->title = 'BagPack';
                 <div class="name-style content-block center-block label-pos">
                     <i class="fa fa-arrow-left arrow-pos" data-placement="top" tooltip-placement="right-bottom"
                        uib-tooltip="Back to lists" ng-click="backToLists()">
-                    </i>Pack Your Bag
-                    <i class="fa fa-refresh refresh-pos" ng-click="refreshPackingList()"
-                        tooltip-placement="bottom-left" uib-tooltip="Click to refresh list of stuffs">
-                    </i>
-                    <i class="fa fa-check " ng-show="checkAllItemsFinalList"
-                       tooltip-placement="bottom" uib-tooltip="Check all" ng-click="checkAllFinalList()">
-                    </i>
-                    <i class="fa fa-close" ng-show="unCheckAllItemsFinalList"
-                       tooltip-placement="bottom" uib-tooltip="Uncheck all" ng-click="unCheckAllFinalList()">
-                    </i>
+                    </i>Packing list: <span ng-repeat="list in finalLists">{{list.list_name}}</span>
                 </div>
             </div>
             <div class="hr-final-list"></div>
             <div ng-show="showFinalListContent" class="show-final-list-content clearfix ">
-                <div class="form-group col-md-4 content-style" ng-repeat="section in sections" >
+                <div ng-if="section.stuffs.length > 0" class="form-group col-md-4 content-style" ng-repeat="section in finalItems" >
                     <div class="packListContainer">
                         <div class="content-block">
                             {{section.section_name}}
                             <div class=" col-md-11 hr-section"></div>
                         </div>
-                        <div ng-repeat="stuffs in section.stuffs">
+                        <div ng-repeat="stuffs in section.stuffs" style="font-family: 'Lobster Two', cursive;font-size: 23px">
                             <label style="font-weight: 400; cursor: pointer;">
                                 <input type="checkbox"
                                        ng-click="selectStuffFinalList(stuffs)"
@@ -48,8 +39,6 @@ $this->title = 'BagPack';
                                 </span>
                             </label>
                         </div>
-                        <span ng-if="allStuffsSelected()">
-                            </span>
                     </div>
                 </div>
             </div>

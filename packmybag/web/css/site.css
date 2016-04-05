@@ -24,7 +24,7 @@ body {
 .packingList-index {
     margin-top: 50px;
     min-height: 100%;
-    background-color: #02263C;
+    background-color: #302D3E;
     color:wheat;
 }
 
@@ -49,7 +49,7 @@ body {
 }
 
 .card-img{
-    background: url("card-image.jpg") no-repeat center;
+    background: url("test1.jpg") no-repeat center;
     height: 200px;
     width: 230px;
     background-size: cover;
@@ -68,6 +68,7 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+
 }
 
 .footer{
@@ -79,6 +80,7 @@ body {
     padding: 7px 15px 0 0;
     text-align: right;
     color: white;
+    z-index: 5;
 }
 
 .jumbotron {
@@ -272,6 +274,27 @@ a.desc:after {
     font-size: medium;
 }
 
+.btn-edit {
+    width: 200px;
+    height: 40px;
+    font-size: medium;
+    background: #fcfcff;
+    border: 2px solid #000000;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: black;
+}
+
+.btn-edit:hover{
+    background: #7BB712;
+    border: 2px solid #000000;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: #ffffff;
+}
+
 .bet-buttons {
     margin-top: 5px;
 }
@@ -312,6 +335,16 @@ a.desc:after {
 }
 
 [ng-show="showFinalListContent"] .form-group[class*='col-md-'] {
+    float:none;
+    width: 33%;
+}
+
+[ng-show="showEditContent"]  .form-group{
+    display: inline-block;
+    vertical-align: top;
+}
+
+[ng-show="showEditContent"] .form-group[class*='col-md-'] {
     float:none;
     width: 33%;
 }
@@ -487,10 +520,19 @@ span.tab{
 }
 
 .wish-item{
-    box-shadow: 0 0 15px black !important;
+    box-shadow: 0 0 20px white !important;
     height: 480px;
+    width: 260px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.btn-edit-list {
+    background-color: #562831;
+    border-color: black;
+    color: white;
+    width: 28px;
+    height: 28px;
 }
 
 .description {
@@ -510,6 +552,11 @@ span.tab{
 .no-items {
     font-size: 20px;
     color: black;
+}
+
+.no-items-final {
+    font-size: 20px;
+    color: grey;
 }
 
 .credit-card-box .panel-title {
@@ -632,6 +679,8 @@ span.tab{
     position: absolute;
     right: 80px;
     top: 50px;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 100%;
 }
 
 .label-pos {
@@ -649,9 +698,8 @@ span.tab{
 
 
 .check-all-pos {
-    padding-left: 20px;
     padding-top: 20px;
-    position: absolute;
+
     left: 0;
     top: 15px;
 }
@@ -676,11 +724,11 @@ span.tab{
         display: block;
         width: auto;
     }
-    [ng-show="showChooseContent"]  .form-group,[ng-show="showFinalListContent"]  .form-group, [ng-show="showListContent"]  .form-group{
+    [ng-show="showChooseContent"]  .form-group,[ng-show="showFinalListContent"]  .form-group,[ng-show="showEditContent"]  .form-group,  [ng-show="showListContent"]  .form-group{
         display: block;
     }
 
-    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'], [ng-show="showFinalListContent"] .form-group[class*='col-md-'] {
+    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showEditContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'], [ng-show="showFinalListContent"] .form-group[class*='col-md-'] {
         width: auto;
     }
 
@@ -708,6 +756,17 @@ span.tab{
         padding-top: 20px;
     }
 
+    .card-img{
+        background: url("test1.jpg") no-repeat center;
+        height: 200px;
+        width: 230px;
+        background-size: cover;
+    }
+
+    .wish-item {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
 }
 
@@ -718,15 +777,27 @@ span.tab{
         height: auto;
     }
 
+    .wish-item {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-img{
+        background: url("test1.jpg") no-repeat center;
+        height: 200px;
+        width: 230px;
+        background-size: cover;
+    }
+
     .pack-index .row > [class*='col-'] {
         display: block;
     }
 
-    [ng-show="showChooseContent"]  .form-group,[ng-show="showFinalListContent"]  .form-group, [ng-show="showListContent"]  .form-group{
+    [ng-show="showChooseContent"]  .form-group,[ng-show="showFinalListContent"]  .form-group,[ng-show="showEditContent"]  .form-group,  [ng-show="showListContent"]  .form-group{
         display: block;
     }
 
-    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'], [ng-show="showFinalListContent"] .form-group[class*='col-md-'] {
+    [ng-show="showChooseContent"] .form-group[class*='col-md-'],[ng-show="showEditContent"] .form-group[class*='col-md-'],[ng-show="showListContent"] .form-group[class*='col-md-'], [ng-show="showFinalListContent"] .form-group[class*='col-md-'] {
         width: auto;
     }
 
@@ -760,6 +831,52 @@ span.tab{
     padding-right: 20%;
 }
 
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+input[type=checkbox] {
+
+    cursor: pointer;
+    border-radius:25px;
+
+    -webkit-appearance:button;
+
+    border: double 2px #000000;
+
+    background-color: #fffafe;
+    color:#FFF;
+
+    width:18px;
+    height:18px;
+}
+
+input[type=checkbox]:checked {
+    background-color: #215eb7;
+    border-color: #0c0940;
+}
+
+.checked {
+    cursor: pointer;
+    border-radius:25px;
+    background-color: #215eb7;
+    border-color: #0c0940;
+    width:20px;
+    height:15px;
+}
+
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 4px #000000;
+}
+
+#printable { display: none; }
+
+@media print
+{
+    #non-printable { display: none; }
+    #printable { display: block; }
+}
 
 
 

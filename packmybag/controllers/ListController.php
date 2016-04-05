@@ -28,7 +28,7 @@ class ListController extends Controller
         $listname=Yii::$app->request->post('listname');
         $description=Yii::$app->request->post('description');
         $items = Yii::$app->request->post('selectedItems');
-
+        $filters = Yii::$app->request->post('selectedFilters');
 
         $query= new Query();
         if($listInfo = $query->from('user_list')->where(['list_name'=>$listname,'userId'=>Yii::$app->user->id])->exists())
@@ -39,9 +39,32 @@ class ListController extends Controller
 
             Yii::$app->db->createCommand()
                 ->insert('user_list',
-                    ['list_name'=>$listname,'list_data'=>json_encode($items), 'list_description'=> $description, 'userId'=> Yii::$app->user->id])
+                    ['list_name'=>$listname,'list_data'=>json_encode($items),'list_filter'=>json_encode($filters), 'list_description'=> $description, 'userId'=> Yii::$app->user->id])
                 ->execute();
             echo json_encode('ok');
+        }
+    }
+
+    public function actionUpdate_list(){
+        $items = Yii::$app->request->post('selectedItems');
+        $list_id = Yii::$app->request->post('listId');
+        $listname=Yii::$app->request->post('listname');
+        $description=Yii::$app->request->post('description');
+        $filters = Yii::$app->request->post('selectedFilters');
+
+        $query= new Query();
+        if($listInfo = $query->from('user_list')->where(['list_id'=>$list_id,'userId'=>Yii::$app->user->id])->exists())
+        {
+            Yii::$app->db->createCommand()
+                ->update('user_list',
+                    ['list_name'=>$listname,'list_data'=>json_encode($items),'list_filter'=>json_encode($filters), 'list_description'=> $description], ['list_id'=>$list_id])
+                ->execute();
+            echo json_encode('ok');
+
+        }
+        else{
+
+            echo json_encode('bad');
         }
     }
 
@@ -49,6 +72,14 @@ class ListController extends Controller
 
         $query= new Query();
         $listInfo = $query->from('user_list')->select(['list_name','list_description','list_id'])->where(['userId'=>Yii::$app->user->id])->all();
+
+        echo json_encode($listInfo);
+    }
+
+    public function actionUser_name(){
+
+        $query= new Query();
+        $listInfo = $query->from('user')->select(['email'])->where(['userId'=>Yii::$app->user->id])->all();
 
         echo json_encode($listInfo);
     }
@@ -76,8 +107,8 @@ class ListController extends Controller
     public function actionCurrent_list(){
 
         $query= new Query();
-        $list_id = Yii::$app->request->post('listId');
-        $listInfo = $query->from('user_list')->select(['list_data'])->where(['userId'=>Yii::$app->user->id, 'list_id'=>$list_id])->all();
+        $list_id = Yii::$app->request->post('listID');
+        $listInfo = $query->from('user_list')->select('*')->where(['userId'=>Yii::$app->user->id, 'list_id'=>$list_id])->all();
 
         echo json_encode($listInfo);
     }

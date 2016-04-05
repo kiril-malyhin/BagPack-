@@ -21,5 +21,9 @@ class PackController extends Controller{
         return $this->render('packingList');
     }
 
+    public function actionEdit_list(){
+        return $this->render('editList');
+    }
+
 }
 

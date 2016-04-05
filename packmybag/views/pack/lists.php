@@ -3,22 +3,22 @@
 $this->title = 'BagPack';
 ?>
 
-<div class="profile-body" ng-controller="listCtrl" style="padding-top: 70px; padding-bottom: 100px;background-color: #110433;min-height: 100%">
+<div class="profile-body" ng-controller="listCtrl" style="padding-top: 70px; padding-bottom: 100px;background-color: #302D3E;min-height: 100%">
     <div class="container">
         <div class="row">
-            <div class="name-style content-block center-block" style="color: white">Lists</div>
+            <div class="name-style content-block center-block" style="color: white">Lists by {{userName[0].email}}</div>
             <div class="hr-contact"></div>
             <br>
 
             <div ng-if="!lists || lists.length < 1" style="text-align: center" class="no-lists">
                 No lists found.
             </div>
-            <div class="col-md-3"  ng-repeat="list in lists">
-                <div class="card card-inverse wish-item"  style="background-color: #165475; border-color: black;">
+            <div class="col-md-3 col-sm-12"  ng-repeat="list in lists">
+                <div class="card card-inverse wish-item"  style="background-color: rgba(36, 33, 48, 0.95); border-color: black;">
                     <div class="card-block">
                         <div style="display: inline">
                             <div class="content-block">
-                                <h1 style="color: white; text-align: center">{{list.list_name}}</h1>
+                                <p style="color: white; text-align: center; font-size: 50px" >{{list.list_name}}</p>
                                 <h2 class="card-title">
                                     <button class="btn btn-default " style=";color: white;background-color: transparent"
                                         data-placement="top"
@@ -30,7 +30,7 @@ $this->title = 'BagPack';
                                         <button class="btn btn-primary btn-xs"
                                                 data-placement="top"
                                                 tooltip-placement="top" uib-tooltip="Edit"
-                                                ng-click="">
+                                                ng-click="editList(list.list_id)">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </button>
 

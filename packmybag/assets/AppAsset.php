@@ -30,7 +30,8 @@ class AppAsset extends AssetBundle
         'js/myBarCtrl.js',
         'js/angularModal.js',
         'js/listCtrl.js',
-        'js/contactCtrl.js'
+        'js/contactCtrl.js',
+        'js/editCtrl.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

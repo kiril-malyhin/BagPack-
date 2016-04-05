@@ -24,6 +24,8 @@
                                             <div class="input-group">
                                                 <input
                                                         type="tel"
+                                                        tooltip-placement="left"
+                                                        uib-tooltip="Enter 16 characters card number from the front side of the card"
                                                         class="form-control"
                                                         name="cardNumber"
                                                         placeholder="Valid Card Number"
@@ -41,6 +43,8 @@
                                             <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
                                             <input
                                                     type="tel"
+                                                    tooltip-placement="bottom"
+                                                    uib-tooltip="Enter expiration date from the front side of the card"
                                                     class="form-control"
                                                     name="cardExpiry"
                                                     placeholder="MM / YY"
@@ -54,6 +58,8 @@
                                             <label for="cardCVC">CV CODE</label>
                                             <input
                                                     type="tel"
+                                                    tooltip-placement="right"
+                                                    uib-tooltip="Enter CVV/CVV2 code from the back side of the card"
                                                     class="form-control"
                                                     name="cardCVC"
                                                     placeholder="CVC"
@@ -65,7 +71,27 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <button class="btn btn-success btn-log-sign" type="submit">Start Subscription</button>
+                                        <div class="form-group">
+                                            <label for="cardName">CARD USER NAME</label>
+                                            <div class="input-group">
+                                                <input
+                                                        type="tel"
+                                                        tooltip-placement="left"
+                                                        uib-tooltip="Enter valid cardholder name from the front side of the card"
+                                                        class="form-control"
+                                                        name="cardNumber"
+                                                        placeholder="Valid Card Number"
+                                                        autocomplete="cc-name"
+                                                        required autofocus
+                                                />
+                                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button class="btn btn-success btn-log-sign" type="submit"><i class="fa fa-credit-card"></i>  Pay</button>
                                         <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
                                     </div>
                                 </div>

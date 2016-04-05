@@ -24,7 +24,7 @@
                         </div>
                         <div class="checkbox">
                             <label style="padding-top: 5px">
-                                <input type="checkbox" value="" checked> Remember User
+                                <input type="checkbox" style="-webkit-appearance:checkbox" value="" ng-model="loginInfo.rememberUser" ng-false-value="0" ng-true-value="1" ng-click="rememberUser()"> Remember User
                             </label>
                             <button type="button" class="btn btn-info btn-sm pull-right" ng-click="isCollapsed = !isCollapsed">Forgot password?</button>
                             <div uib-collapse="isCollapsed" style="padding-top: 20px">

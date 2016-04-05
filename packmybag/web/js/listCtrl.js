@@ -10,19 +10,21 @@ app.controller("listCtrl", function($scope,Alertify, $http) {
         console.error(error);
     });
 
-    $scope.packList = function(list_id){
-        window.location.href = "index.php?r=pack/open_packing_list";
-        console.log(list_id);
-        $http.post('index.php?r=list/current_list').success(function(response){
+    $http.post('index.php?r=list/user_name').success(function(response){
+        $scope.userName = response;
+    });
 
-        }).error(function(error){
-            console.error(error);
-        });
+    $scope.packList = function(list_id){
+        window.location.href = "index.php?r=pack/open_packing_list&list_id="+list_id;
+    };
+
+    $scope.editList = function(list_id){
+        window.location.href = "index.php?r=pack/edit_list&list_id="+list_id;
     };
 
     $scope.deleteList = function (list_id){
 
-        alertify.confirm("Doy You really want to delete this list?", function (e) {
+        alertify.confirm("Do You really want to delete this list?", function (e) {
             if (e) {
                 $http.post('index.php?r=list/delete_list',{listId: list_id}).success(function(response){
 
@@ -43,5 +45,6 @@ app.controller("listCtrl", function($scope,Alertify, $http) {
         });
 
     };
+
 
 });

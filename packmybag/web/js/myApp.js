@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify']);
+var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify','ngRoute']);
 
     $(".CheckBoxClass").change(function(){
         if($(this).is(":checked")){
@@ -18,13 +18,8 @@ var app = angular.module("myApp", ["ui.router",'ui.bootstrap','Alertify']);
         $("[data-toggle = 'tooltip']").tooltip();
     });
 
-    app.factory('theService', function(){
-        return {
-            thing: {
-                x: 100
-            }
-        };
-    });
+
+
 
 
 

@@ -81,9 +81,14 @@ $this->title = 'BagPack';
                     </div>
 
                     <br>
-                    <a href="http://facebook.com" target="_blank" class="btn btn-social-icon btn-facebook">
-                        <i class="fa fa-facebook"></i></a>
-                    <a href="http://vk.com" target="_blank" class="btn btn-social-icon btn-vk"><i class="fa fa-vk"></i></a>
+
+                    <span >
+                        <script type="text/javascript">
+                            document.write(VK.Share.button({url: 'http://www.bsuir.by', title: 'BagPack - do not forget to pack everything'},
+                                {type: 'custom', text: '<img src="http://детямпорадомой.рф/assets/images/smm/вк.png" width="35px" height="35px"/>'}));
+                        </script>
+                    </span>
+                    <a href="http://facebook.com" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
                     <a href="http://plus.google.com" target="_blank" class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
                     <a href="http://instagram.com" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
                     <a href="http://linkedin.com" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
