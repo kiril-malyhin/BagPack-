@@ -21,25 +21,23 @@ $this->title = 'BagPack';
     <div class="hr-divider"></div>
     <div style="background-color: #01688b">
         <div class="container contact-index">
-            <div class="row">
-                <div class="center-block " style="color: white;">
-                    <div class="about-index">About us</div>
-                    <div class="hr-about"></div>
-                    <div class="about-info">
-                        <p style="text-align: center;">
-                            We are not a typical group of students.
-                            We are a hybrid of future generation developers, designers and architects.
-                        </p>
-                        <p style="text-align: center;">Our primary goal is to bring something new in the
-                            world of technologies, create helpful tools for people.
-                            Every day we are improving our skills and trying to make Your life easier.
-                            We become a solid team, ready to take any task.
-                        </p>
-                        <p style="text-align: center;">
-                            Join our team and help us to make dreams
-                            come true!
-                        </p>
-                    </div>
+            <div class="center-block " style="color: white;">
+                <div class="about-index">About us</div>
+                <div class="hr-about"></div>
+                <div class="about-info">
+                    <p style="text-align: center;">
+                        We are not a typical group of students.
+                        We are a hybrid of future generation developers, designers and architects.
+                    </p>
+                    <p style="text-align: center;">Our primary goal is to bring something new in the
+                        world of technologies, create helpful tools for people.
+                        Every day we are improving our skills and trying to make Your life easier.
+                        We become a solid team, ready to take any task.
+                    </p>
+                    <p style="text-align: center;">
+                        Join our team and help us to make dreams
+                        come true!
+                    </p>
                 </div>
             </div>
         </div>
@@ -52,49 +50,45 @@ $this->title = 'BagPack';
 
         <div class="center-block contact-start" style="color: white">
 
-            <div class="row">
-
-                    <div style="font-size: 60px">
-                        Contacts
-                    </div>
-                    <div class="hr-about"></div>
-                <br>
-                    <div class="postal-address">
-                        <span class="address-label-start">Address:</span>
-                        <span class="address-info-start">Platonova 39, Minsk, Belarus</span>
-                    </div>
-                    <div>
-                        <span class="address-label-start">
-                           Phone:
-                        </span>
-                        <span class="address-info-start">
-                            +375 17 221 46 51
-                        </span>
-                    </div>
-                    <div>
-                        <span class="address-label-start">
-                           Email:
-                        </span>
-                        <span class="address-info-start">
-                            usb.bsuir@gmail.com
-                        </span>
-                    </div>
-
-                    <br>
-
-                    <span >
-                        <script type="text/javascript">
-                            document.write(VK.Share.button({url: 'http://www.bsuir.by', title: 'BagPack - do not forget to pack everything'},
-                                {type: 'custom', text: '<img src="http://детямпорадомой.рф/assets/images/smm/вк.png" width="35px" height="35px"/>'}));
-                        </script>
-                    </span>
-                    <a href="http://facebook.com" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="http://plus.google.com" target="_blank" class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
-                    <a href="http://instagram.com" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
-                    <a href="http://linkedin.com" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                    <a href="http://twitter.com" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+            <div style="font-size: 60px">
+                Contacts
+            </div>
+            <div class="hr-about"></div>
+            <br>
+            <div class="postal-address">
+                <span class="address-label-start">Address:</span>
+                <span class="address-info-start">Platonova 39, Minsk, Belarus</span>
+            </div>
+            <div>
+                <span class="address-label-start">
+                   Phone:
+                </span>
+                <span class="address-info-start">
+                    +375 17 221 46 51
+                </span>
+            </div>
+            <div>
+                <span class="address-label-start">
+                   Email:
+                </span>
+                <span class="address-info-start">
+                    usb.bsuir@gmail.com
+                </span>
             </div>
 
+            <br>
+
+            <span >
+                <script type="text/javascript">
+                    document.write(VK.Share.button({url: 'http://www.bsuir.by', title: 'BagPack - do not forget to pack everything'},
+                        {type: 'custom', text: '<img src="http://детямпорадомой.рф/assets/images/smm/вк.png" width="35px" height="35px"/>'}));
+                </script>
+            </span>
+            <a href="http://facebook.com" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+            <a href="http://plus.google.com" target="_blank" class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
+            <a href="http://instagram.com" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
+            <a href="http://linkedin.com" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
+            <a href="http://twitter.com" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
 
         </div>
     </div>

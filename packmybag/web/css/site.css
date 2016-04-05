@@ -777,6 +777,16 @@ span.tab{
         height: auto;
     }
 
+    .hr-about {
+        border-top: 3px solid white;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+    .home-name {
+        font-size: 60px;
+    }
+
     .wish-item {
         margin-left: auto;
         margin-right: auto;

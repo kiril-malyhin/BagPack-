@@ -60,7 +60,6 @@ AppAsset::register($this);
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top',
                 'style'=> 'background-color: black; font-size: 15px',
-
             ],
         ]);
         ?>
@@ -81,7 +80,7 @@ AppAsset::register($this);
                                     'label' => ''
                                 ] :
                                 [ 'label' => 'Lists',
-                                    'url' => '/index.php?r=pack/showlists',
+                                    'url' => Yii::$app->homeUrl.'/index.php?r=pack/showlists',
                                     'linkOptions' => ['data-method' => 'post']
                                 ],
 
@@ -113,7 +112,7 @@ AppAsset::register($this);
                                     'options'=> array('ng-click'=>'openLogin()')
                                 ] :
                                 ['label' => 'Logout(' . Yii::$app->user->identity->email .')',
-                                    'url'=> '/index.php?r=site/logout',
+                                    'url'=> Yii::$app->homeUrl.'/index.php?r=site/logout',
                                     'linkOptions' => ['data-method' => 'post']
                                     ],
                             Yii::$app->user->isGuest ?
@@ -133,8 +132,7 @@ AppAsset::register($this);
                                     'url'=> Yii::$app->homeUrl,
                                 ] :
                                 [ 'label' => 'BagPack',
-                                    'url'=> '/index.php?r=pack/create'
-
+                                    'url'=> Yii::$app->homeUrl.'/index.php?r=pack/create'
                                 ],
                         ],
                     ]);?>
@@ -156,7 +154,7 @@ AppAsset::register($this);
     <footer class="footer" style="background-color: black;">
         <div class="containerContent">
             <p class="pull-left">&copy; BagPack <?= date('Y') ?></p>
-            <p style="padding-right: 60px">Made by USB</p>
+            <p >Made by USB</p>
         </div>
     </footer>
 
