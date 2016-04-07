@@ -6,27 +6,14 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 
-/**
- * This is the model class for table "user".
- *
- * @property integer $userId
- * @property string $email
- * @property string $password
- * @property string $authKey
- */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'user';
     }
 
-    /**
-     * @inheritdoc
-     */
+
     public function rules()
     {
         return [
@@ -36,9 +23,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+
     public function attributeLabels()
     {
         return [

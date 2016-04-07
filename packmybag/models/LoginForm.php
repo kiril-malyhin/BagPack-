@@ -6,9 +6,6 @@ use Yii;
 use yii\base\Model;
 use yii\db\Query;
 
-/**
- * LoginForm is the model behind the login form.
- */
 class LoginForm extends Model
 {
     public $username;
@@ -17,10 +14,6 @@ class LoginForm extends Model
 
     private $_user = false;
 
-    /**
-     * Logs in a user using the provided username and password.
-     * @return boolean whether the user is logged in successfully
-     */
     public function login()
     {
         $query= new Query();

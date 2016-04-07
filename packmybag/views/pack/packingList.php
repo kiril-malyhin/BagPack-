@@ -1,15 +1,13 @@
 <?php
 
-/* @var $this yii\web\View */
-
 $this->title = 'BagPack';
 ?>
 
 <div class="packingList-index" ng-controller="myBarCtrl">
-    <div class="row" style=" cursor: pointer;" >
-        <div class="show-list-content clearfix animated fadeInRightBig container">
-            <div class="row" style="position: relative">
-                <div class="name-style content-block center-block label-pos">
+    <div style=" cursor: pointer; padding-left: 50px;padding-right: 50px">
+        <div class="show-list-content clearfix animated fadeInRight">
+            <div style="position: relative">
+                <div class="name-style content-block center-block label-pos-list">
                     <i class="fa fa-arrow-left arrow-pos" data-placement="top" tooltip-placement="right-bottom"
                        uib-tooltip="Back to lists" ng-click="backToLists()">
                     </i>Packing list: <span ng-repeat="list in finalLists">{{list.list_name}}</span>
@@ -23,7 +21,7 @@ $this->title = 'BagPack';
                             {{section.section_name}}
                             <div class=" col-md-11 hr-section"></div>
                         </div>
-                        <div ng-repeat="stuffs in section.stuffs" style="font-family: 'Lobster Two', cursive;font-size: 23px">
+                        <div ng-repeat="stuffs in section.stuffs" class="font-style">
                             <label style="font-weight: 400; cursor: pointer;">
                                 <input type="checkbox"
                                        ng-click="selectStuffFinalList(stuffs)"

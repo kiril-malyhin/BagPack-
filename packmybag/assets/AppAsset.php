@@ -19,19 +19,22 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'js/libs/ng-alertify/dist/ng-alertify.css',
+        'js/libs/font-awesome-4.5.0/css/font-awesome.min.css',
         'css/site.css',
         'css/animate.css',
         'css/icons.css'
     ];
     public $js = [
         'js/libs/ng-alertify/dist/ng-alertify.js',
-        'js/radioButton.js',
         'js/myApp.js',
-        'js/myBarCtrl.js',
-        'js/angularModal.js',
-        'js/listCtrl.js',
-        'js/contactCtrl.js',
-        'js/editCtrl.js'
+        'js/site/myBarCtrl.js',
+        'js/site/listCtrl.js',
+        'js/site/contactCtrl.js',
+        'js/site/editCtrl.js',
+        'js/site/paymentCtrl.js',
+        'js/user/loginCtrl.js',
+        'js/user/signCtrl.js',
+        'js/user/passwordCtrl.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

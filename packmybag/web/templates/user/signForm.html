@@ -1,0 +1,57 @@
+
+    <div class="modal-header">
+        <h3 class="modal-title">Sign Up</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="well">
+                    <form id="signForm" method="POST" name="signForm" novalidate>
+                        <div class="form-group">
+                            <label class="control-label" ><span class="fa fa-user"></span> Username</label>
+                            <input type="text" class="form-control" name="username" ng-model="signUpInfo.username" ng-minlength="6" ng-maxlength="32" placeholder="Enter username (at least 6 symbols)" required>
+                            <p ng-show="signForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                            <p ng-show="signForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" ><span class="glyphicon glyphicon-pencil"></span> Email</label>
+                            <input type="email" class="form-control" name="user_email" ng-model="signUpInfo.user_email" ng-email="4" placeholder="Enter email (at least 3 symbols)" required>
+                            <p ng-show="signForm.user_email.$error.email" class="help-block">Format: example@example.com</p>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" name="password"><span class="fa fa-key"></span> Password</label>
+                            <input type="password" class="form-control" name="password" ng-model="signUpInfo.password" ng-minlength="4" ng-maxlength="32" placeholder="Enter password (at least 4 symbols)" required>
+                            <p ng-show="signForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                            <p ng-show="signForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" ><span class="fa fa-key"></span> Confirm password</label>
+                            <input type="password" class="form-control" name="confirmPassword" ng-model="signUpInfo.confirmPassword" ng-minlength="4" ng-maxlength="32" placeholder="Confirm password" required>
+                            <div class="style-password">
+                            <p ng-show="(signUpInfo.password != signUpInfo.confirmPassword)" >Passwords do not match </p>
+                            </div>
+                            <span class="help-block"></span>
+                        </div>
+
+                        <button ng-click="signUserUp()" ng-disabled="signForm.$invalid" class="btn btn-success btn-log-sign" type="button"><span class="fa fa-user-plus"></span>  Sign up</button>
+                        <button class="btn btn-danger btn-log-sign" type="button" ng-click="Cancel()"><i class="fa fa-times"></i>  Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5 hidden-xs">
+                <p class="lead">Register now for <span class="text-success">FREE</span></p>
+                <ul class="list-unstyled" style="line-height: 2">
+                    <li><span class="fa fa-check text-success"></span> See your lists of baggage</li>
+                    <li><span class="fa fa-check text-success"></span> Update already existing lists</li>
+                    <li><span class="fa fa-check text-success"></span> Create new lists and save them</li>
+                    <li><span class="fa fa-check text-success"></span> Adding some specific stuffs</li>
+                    <li><span class="fa fa-check text-success"></span> Share lists with friends</li>
+                    <li><span class="fa fa-check text-success"></span> Advices for travelling</li>
+                    <li><span class="fa fa-check text-success"></span> Extended functions <small>(only for premium account)</small></li>
+                </ul>
+            </div>
+        </div>
+    </div>

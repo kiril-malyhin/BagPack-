@@ -42,21 +42,22 @@ body {
 }
 
 .bar-st {
-    background: url("bar.jpg") no-repeat center;
+    background: url("images/bar.jpg") no-repeat center;
     height: 100%;
     min-height: 100%;
     background-size: cover;
+    font-family: 'Raleway', sans-serif;
 }
 
 .card-img{
-    background: url("test1.jpg") no-repeat center;
+    background: url("images/listImage.jpg") no-repeat center;
     height: 200px;
     width: 230px;
     background-size: cover;
 }
 
 .start-page {
-    background: url("18.jpg") no-repeat center;
+    background: url("images/startPage.jpg") no-repeat center;
     height: 600px;
     width: 100%;
     background-size: cover;
@@ -108,7 +109,6 @@ body {
     font-style: italic;
 }
 
-/* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
     top: 1px;
@@ -253,14 +253,12 @@ a.desc:after {
 }
 
 .choose-bar-block {
-    margin-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 100px;
+    margin: 30px 30px 100px 30px ;
 }
 
 .center-block {
     text-align: center;
-    font-family: Helvetica;
+    font-family: 'Raleway', sans-serif;
 }
 
 
@@ -299,10 +297,9 @@ a.desc:after {
     margin-top: 5px;
 }
 
-
 [ng-show="showChooseContent"]  .form-group{
    display: inline-block;
-    vertical-align: top;
+   vertical-align: top;
 }
 
 [ng-show="showChooseContent"] .form-group[class*='col-md-'] {
@@ -313,7 +310,6 @@ a.desc:after {
 .show-choose-content {
     padding-bottom: 100px;
 }
-
 
 [ng-show="showListContent"]  .form-group{
     display: inline-block;
@@ -354,9 +350,7 @@ a.desc:after {
 }
 
 .content-block {
-    /*background: url("3.jpg");
-    -webkit-background-size: 100%;*/
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-size: 40px;
     font-weight: 100;
 }
@@ -369,7 +363,7 @@ hr {
 }
 
 .hr-black {
-    margin-top: 29px;
+    margin-top: 44px;
     margin-bottom: 20px;
     border: 0;
     border-top: 5px solid black;
@@ -525,6 +519,8 @@ span.tab{
     width: 260px;
     border-radius: 10px;
     cursor: pointer;
+    background-color: rgba(36, 33, 48, 0.95);
+    border-color: black;
 }
 
 .btn-edit-list {
@@ -611,19 +607,19 @@ span.tab{
 
 .visit-index {
     padding-bottom: 460px;
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 100;
 }
 
 .visit-index-start {
     padding-bottom: 100px;
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 100;
 }
 
 .about-index {
 
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-size: 50px;
     font-weight: 100;
 }
@@ -652,7 +648,7 @@ span.tab{
 .about-info {
     font-size: 30px;
     color: white;
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 100;
     text-align: center;
     padding-left: 20%;
@@ -671,7 +667,7 @@ span.tab{
 
 .contact-start {
     color: white;
-    font-family: 'Lobster Two', cursive;
+    font-family: 'Raleway', sans-serif;
     font-weight: 100;
 }
 
@@ -686,6 +682,11 @@ span.tab{
 .label-pos {
     padding-right: 100px;
     padding-top: 20px;
+}
+
+.label-pos-list {
+    padding-top: 20px;
+    padding-right: 100px;
 }
 
 .arrow-pos {
@@ -711,6 +712,11 @@ span.tab{
 
 .content-style {
     padding-left: 15px;
+}
+
+.label-pos-edit {
+    padding-top: 20px;
+
 }
 
 @media (min-width:768px) and (max-width: 979px){
@@ -748,6 +754,11 @@ span.tab{
         padding-top: 20px;
     }
 
+    .label-pos-list {
+        padding-right: 0;
+        padding-top: 20px;
+    }
+
     .content-style {
         padding-left: 5%;
     }
@@ -757,7 +768,7 @@ span.tab{
     }
 
     .card-img{
-        background: url("test1.jpg") no-repeat center;
+        background: url("images/listImage.jpg") no-repeat center;
         height: 200px;
         width: 230px;
         background-size: cover;
@@ -777,6 +788,18 @@ span.tab{
         height: auto;
     }
 
+    .name-style {
+        font-size: 60px;
+        position: relative;
+    }
+
+
+    .choose {
+        width: 127px;
+        padding: 10px;
+        position: relative;
+    }
+
     .hr-about {
         border-top: 3px solid white;
         margin-left: 25%;
@@ -793,7 +816,7 @@ span.tab{
     }
 
     .card-img{
-        background: url("test1.jpg") no-repeat center;
+        background: url("images/listImage.jpg") no-repeat center;
         height: 200px;
         width: 230px;
         background-size: cover;
@@ -823,16 +846,30 @@ span.tab{
    }
 
     .label-pos {
-        padding-right: 0;
         padding-top: 20px;
     }
 
+    .label-pos-list {
+        padding-top: 20px;
+        padding-left: 20%;
+    }
+
+    .label-pos-edit {
+        padding-top: 20px;
+        padding-left: 25%;
+    }
+
     .content-style {
-        padding-left: 5%;
+        padding-left: 10%;
     }
 
     .arrow-pos {
         padding-top: 20px;
+    }
+
+    .hr-bar-stuffs{
+        border: 0;
+        border-top: 3px solid black;
     }
 }
 
@@ -877,7 +914,7 @@ input[type=checkbox]:checked {
 }
 
 input[type=checkbox]:hover {
-    box-shadow:0px 0px 4px #000000;
+    box-shadow:0 0 4px #000000;
 }
 
 #printable { display: none; }
@@ -888,5 +925,22 @@ input[type=checkbox]:hover {
     #printable { display: block; }
 }
 
+.font-style {
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    font-size: 23px;
+}
 
+.list-style {
+    padding-top: 70px;
+    padding-bottom: 100px;
+    background-color: #302D3E;
+    min-height: 100%;
+}
+
+.description-style {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
 

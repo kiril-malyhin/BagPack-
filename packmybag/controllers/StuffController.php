@@ -4,10 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\db\Query;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
 
 
 class StuffController extends Controller{

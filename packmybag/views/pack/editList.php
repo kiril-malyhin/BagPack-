@@ -1,7 +1,5 @@
 <?php
 
-/* @var $this yii\web\View */
-
 $this->title = 'BagPack';
 ?>
 
@@ -17,7 +15,7 @@ $this->title = 'BagPack';
                     <h4>{{category.cat_filter_name}}</h4>
                     <div>
                         <div class="btn-group" id="{{category.cat_filter_id}}" data-toggle="buttons" >
-                            <label ng-repeat="filters in category.filters" style="border-radius:20px" class="btn btn-default choose filter-button"
+                            <label ng-repeat="filters in category.filters" style="border-radius:20px;" class="btn btn-default choose filter-button"
                                    ng-click="radioButtonSetValue(category.cat_filter_id, filters.filter_id)" ng-class="{active: checked[filters.filter_id]}">
                                 <input type="radio" name="{{category.cat_filter_id}}"
                                        ng-model="bar[category.cat_filter_id]"
@@ -29,16 +27,13 @@ $this->title = 'BagPack';
                     </div>
                     <hr>
                 </div>
-
-
             </div >
         </div>
 
         <div class="col-md-10">
-
-            <div ng-show="showEditContent" class="show-final-list-content  animated fadeInRightBig" >
-                <div class="row" style="position: relative">
-                    <div class="name-style content-block center-block label-pos" >
+            <div ng-show="showEditContent" class="show-final-list-content  animated fadeInRight" >
+                <div style="position: relative">
+                    <div class="name-style content-block center-block label-pos-list" >
                         <i class="fa fa-arrow-left arrow-pos" data-placement="top" tooltip-placement="right-bottom"
                            uib-tooltip="Back to lists" ng-click="backToLists()">
                         </i>Edit list: <span ng-repeat="list in finalLists">{{list.list_name}}</span>
@@ -57,17 +52,17 @@ $this->title = 'BagPack';
                 <div class="hr-black"></div>
                 <div ng-show="startEditStuffs">
                     <div class="form-group col-md-4 content-style" ng-if="section.section_name.length > 0"  ng-repeat="section in sections" >
-                        <div class="content-block" ng-hide="isSectionHidden(section)">
+                        <div class="content-block" ng-hide="isSectionHidden(section)" style="text-decoration: underline">
                             {{section.section_name}}
                             <i style="color: #b50006" class="fa fa-plus-circle" ng-click="openNewStuff(section, checkedItems)"
                                tooltip-placement=top}" uib-tooltip="Click to add new stuff">
                             </i>
-                            <div class="no-items">
-                                <div ng-if="sectionsContent[section.section_id]" ng-model="section.section_name">No items</div>
-                            </div>
+                        </div>
+                        <div class="no-items content-block">
+                            <div ng-if="sectionsContent[section.section_id]" ng-model="section.section_name">No items</div>
                         </div>
 
-                        <div ng-repeat="stuffs in section.stuffs" style="font-family: 'Lobster Two', cursive; font-weight: 400; cursor: pointer;font-size: 23px">
+                        <div ng-repeat="stuffs in section.stuffs" class="font-style">
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
@@ -83,26 +78,24 @@ $this->title = 'BagPack';
 
                 <div ng-show="filteringEditStuffs">
                     <div class="form-group col-md-4 content-style" ng-if="section.section_name.length > 0" ng-repeat="section in sections" >
-                        <div class="content-block" ng-hide="isSectionHidden(section)">
+                        <div class="content-block" ng-hide="isSectionHidden(section)" style="text-decoration: underline">
                             {{section.section_name}}
                             <i style="color: #b50006" class="fa fa-plus-circle" ng-click="openNewStuff()"
                                tooltip-placement=top}" uib-tooltip="Click to add new stuff">
                             </i>
-                            <div class="no-items">
-                                <div ng-if="isSectionEmpty(section)" ng-model="section.section_name">No items</div>
-                            </div>
+                        </div>
+                        <div class="no-items content-block">
+                            <div ng-if="isSectionEmpty(section)" ng-model="section.section_name">No items</div>
                         </div>
 
-                        <div ng-repeat="stuffs in section.stuffs"  style="font-family: 'Lobster Two', cursive; font-weight: 400; cursor: pointer;font-size: 23px" ng-show = "checkItem(stuffs)">
+                        <div ng-repeat="stuffs in section.stuffs"  class="font-style" ng-show="checkItem(stuffs)">
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
                                        ng-click="selectStuffFinalList(stuffs)"
                                        value="{{stuffs.stuff_name}}"
                                        ng-checked="checkedItems.indexOf(stuffs) != -1">
-                            <span class="tab">
-
-                            </span>{{stuffs.stuff_name}}
+                            <span class="tab"></span>{{stuffs.stuff_name}}
                             </label>
                         </div>
                     </div>

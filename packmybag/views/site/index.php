@@ -13,7 +13,10 @@ $this->title = 'BagPack';
                 <p class="lead">Don't forget to pack everything</p>
             </div>
             <div class="home-start">
-                <a class="btn btn-lg btn-default" style="background-color: transparent; color: white"  href = "index.php?r=pack/create" data-toggle="tooltip" data-placement="top"  title="If you want to save your list, please login">Start packing <span class="glyphicon glyphicon-check"></span></a>
+                <a class="btn btn-lg btn-default" style="background-color: transparent; color: white"  href = "index.php?r=pack/create" data-toggle="tooltip"
+                   data-placement="top"  title="If you want to save your list, please login">Start packing
+                    <span class="glyphicon glyphicon-check"></span>
+                </a>
             </div>
         </div>
     </div>
@@ -24,17 +27,17 @@ $this->title = 'BagPack';
             <div class="center-block " style="color: white;">
                 <div class="about-index">About us</div>
                 <div class="hr-about"></div>
-                <div class="about-info">
-                    <p style="text-align: center;">
+                <div class="about-info" style="text-align: center;">
+                    <p>
                         We are not a typical group of students.
                         We are a hybrid of future generation developers, designers and architects.
                     </p>
-                    <p style="text-align: center;">Our primary goal is to bring something new in the
+                    <p>Our primary goal is to bring something new in the
                         world of technologies, create helpful tools for people.
                         Every day we are improving our skills and trying to make Your life easier.
                         We become a solid team, ready to take any task.
                     </p>
-                    <p style="text-align: center;">
+                    <p>
                         Join our team and help us to make dreams
                         come true!
                     </p>
@@ -80,7 +83,7 @@ $this->title = 'BagPack';
 
             <span >
                 <script type="text/javascript">
-                    document.write(VK.Share.button({url: 'http://www.bsuir.by', title: 'BagPack - do not forget to pack everything'},
+                    document.write(VK.Share.button({url: 'http://packbag.esy.es/packmybag/web/', title: 'BagPack - do not forget to pack everything'},
                         {type: 'custom', text: '<img src="http://детямпорадомой.рф/assets/images/smm/вк.png" width="35px" height="35px"/>'}));
                 </script>
             </span>
