@@ -109,7 +109,6 @@ class SiteController extends Controller
 
     public function actionContact_us(){
 
-        $errors = '';
         $myemail = 'kiril.malyhin@yandex.ru';
 
         $name = Yii::$app->request->post('first_name');

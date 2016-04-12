@@ -9,7 +9,7 @@ $this->title = 'BagPack';
             <div class="name-style content-block center-block" style="color: white">Lists by {{userName[0].email}}</div>
             <div class="hr-contact"></div>
             <br>
-            <div ng-if="!lists || lists.length < 1" style="text-align: center" class="no-lists">
+            <div ng-if="!lists || lists.length < 1" class="no-lists">
                 No lists found.
             </div>
             <div class="col-md-3 col-sm-12"  ng-repeat="list in lists">

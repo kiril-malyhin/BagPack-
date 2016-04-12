@@ -45,15 +45,19 @@ class LoginController extends Controller
         $query= new Query();
         if($userInfo = $query->from('user')->where(['user_email'=>$email_address])->exists())
         {
+            $name = $query->select(['email'])->from('user')->where(['user_email'=>$email_address]);
+
+            $password = $query->select('password')->from('user')->where(['user_email'=>$email_address]);
+
             $to = $myemail;
 
             $email_subject = "Restore mail. Please, don't answer this message.";
 
             $email_body = "You have received a new message. ".
 
-                " Here are the details:\n Name: Kirill  ".
+                " Here are the details:\n Name: $name  ".
 
-                " Password: qwerty\n";
+                " Password: $password\n";
 
             $headers = "From: $myemail\n";
 

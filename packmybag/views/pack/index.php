@@ -125,7 +125,7 @@ $this->title = 'BagPack';
                             <div ng-show="noStuffsInSection(section)" ng-model="section.section_name" >No checked items</div>
                         </div>
                         <div ng-repeat="stuffs in section.stuffs" ng-show="stuffs.selected" class="font-style">
-                            <label style="cursor: pointer">
+                            <label style="cursor: pointer" class="font-style">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
                                        value="{{stuffs.stuff_name}}"

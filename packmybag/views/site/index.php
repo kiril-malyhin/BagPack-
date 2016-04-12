@@ -48,7 +48,6 @@ $this->title = 'BagPack';
     </div>
     <div class="hr-divider-grey"></div>
 
-
     <div class="visit-index-start" style="background-color: #333">
 
         <div class="center-block contact-start" style="color: white">

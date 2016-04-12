@@ -21,8 +21,7 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
     var userStuffs = [];
     var crossedItems = {};
     var listStuffs = [];
-    var addedStuffs = [];
-
+    $scope.addedStuffs = [];
 
     $scope.listInfo = {
         listname: undefined,
@@ -88,7 +87,6 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
     };
 
     $http.post('index.php?r=stuff/section').success(function (response) {
-
         $scope.sections = response;
         for (var section in $scope.sections) {
             for (var stuff in $scope.sections[section].stuffs) {
@@ -215,7 +213,8 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
 
                     var newStuff = {
                         stuff_name: $scope.stuffInfo.stuffName,
-                        selected: true
+                        selected: true,
+                        section_name: section.section_name
                     };
 
                     section.stuffs.push(newStuff);
@@ -326,14 +325,6 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
 
     };
 
-    $scope.packAlert = function () {
-        Alertify.success('Your Bag has been packed!');
-    };
-
-    $scope.saveToPdf = function () {
-
-    };
-
     $scope.printDiv = function (divName) {
 
         var printContents = document.getElementById(divName).innerHTML;
@@ -356,11 +347,14 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
         var finalStuffs = JSON.parse(finalLists[0].list_data);
         for (var finalStuff in finalStuffs) {
             listStuffs.push(finalStuffs[finalStuff].stuff_id);
-            addedStuffs.push(finalStuffs[finalStuff].stuff_name);
+            $scope.addedStuffs.push(finalStuffs[finalStuff]);
         }
 
+        console.log($scope.addedStuffs);
+        var addedStuffs = $scope.addedStuffs;
+
         $scope.selectStuffFinalList(listStuffs);
-        secondAction(listStuffs, addedStuffs);
+        secondAction(listStuffs,addedStuffs);
      });
 
     function secondAction (listStuffs, addedStuffs) {
@@ -371,7 +365,6 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
             for(var listItem in listStuffs) {
                 for(var section in $scope.sectionsFinal) {
                     if (!$scope.finalItems[section]) {
-
                         $scope.finalItems[section] = {};
                         $scope.finalItems[section].section_name = $scope.sectionsFinal[section].section_name;
                         $scope.finalItems[section].stuffs = [];
@@ -381,15 +374,20 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
                         if ($scope.sectionsFinal[section].stuffs[stuff].stuff_id == listStuffs[listItem]) {
                             $scope.finalItems[section].stuffs.push($scope.sectionsFinal[section].stuffs[stuff]);
                         }
+                        //console.log($scope.sectionsFinal[section].section_name);
+                        //console.log(addedStuffs);
+                        //else if($scope.sectionsFinal[section].section_name == addedStuffs.section_name){
+                        //    console.log("test");
+                        //}
                     }
                 }
             }
         });
-
     }
 
     $scope.selectStuffFinalList = function (stuffs) {
 
+        console.log(stuffs);
         if ($scope.checkedItems.indexOf(stuffs) === -1) {
             $scope.checkedItems.push(stuffs);
         } else {
@@ -404,5 +402,7 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
         window.location.href = "index.php?r=pack/showlists";
     };
 });
+
+
 
 

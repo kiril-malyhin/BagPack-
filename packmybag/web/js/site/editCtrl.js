@@ -15,9 +15,11 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
     $scope.existStuffs = false;
     $scope.sectionName = {};
     $scope.checkedItems = [];
+    $scope.filterValues = [];
     $scope.checkedItemsFinalList = [];
     $scope.refreshListOfItems = true;
     $scope.finalItems = [];
+    $scope.addedStuffs = [];
     var userStuffs = [];
 
     var QueryString = function () {
@@ -186,7 +188,8 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
 
                     var newStuff = {
                         stuff_name: $scope.stuffInfo.stuffName,
-                        selected: true
+                        selected: true,
+                        section_name: section.section_name
                     };
 
                     section.stuffs.push(newStuff);
@@ -306,6 +309,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         var finalStuffs = JSON.parse(finalLists[0].list_data);
         for (var finalStuff in finalStuffs) {
             listStuffs.push(finalStuffs[finalStuff].stuff_id);
+            $scope.addedStuffs.push(finalStuffs[finalStuff]);
         }
 
         $scope.description = finalLists[0].list_name;
@@ -376,10 +380,12 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                     for(var filterItem in listFilters){
                         if(categories[category].filters[filter].filter_id == listFilters[filterItem]){
                             $scope.checked[listFilters[filterItem]] = true;
+                            $scope.filterValues.push(listFilters[filterItem]);
                         }
                     }
                 }
             }
+            console.log($scope.filterValues);
             return false;
         });
     }
@@ -409,7 +415,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         $uibModal.open({
 
             templateUrl: 'templates/site/updateListForm.html',
-            controller: function ($scope, $uibModalInstance, items, description, listName) {
+            controller: function ($scope, $uibModalInstance, items, description, listName, filters) {
 
                 $scope.listInfo = {
                     listname: listName,
@@ -430,8 +436,10 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                         listname: $scope.listInfo.listname,
                         description: $scope.listInfo.description,
                         selectedItems: items,
-                        listId: QueryString.list_id
+                        listId: QueryString.list_id,
+                        selectedFilters: filters
                     };
+                    if(items != 0){
                         $http.post('index.php?r=list/update_list', data).success(function(response){
                             $scope.autoClose();
                             if(JSON.parse(response) != "bad"){
@@ -444,6 +452,10 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                         }).error(function(error){
                             console.error(error);
                         });
+                    }else if(items == 0){
+                        $scope.autoClose();
+                        Alertify.alert('Your list is empty! You should check at least 1 item!')
+                    }
                 };
             },
             size: 'sm',
@@ -456,6 +468,9 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                 },
                 listName: function(){
                     return finalLists.list_name;
+                },
+                filters: function(){
+                    return $scope.filterValues;
                 }
             }
         });
