@@ -32,6 +32,16 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-76400720-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
 </head>
 <body>
 
@@ -62,7 +72,7 @@ AppAsset::register($this);
                                     'label' => ''
                                 ] :
                                 [ 'label' => 'Lists',
-                                    'url' => '/index.php?r=pack/showlists',
+                                    'url' => Yii::$app->homeUrl.'/index.php?r=pack/showlists',
                                     'linkOptions' => ['data-method' => 'post']
                                 ],
 
@@ -94,7 +104,7 @@ AppAsset::register($this);
                                     'options'=> array('ng-click'=>'openLogin()')
                                 ] :
                                 ['label' => 'Logout(' . Yii::$app->user->identity->email .')',
-                                    'url'=> '/index.php?r=site/logout',
+                                    'url'=> Yii::$app->homeUrl.'/index.php?r=site/logout',
                                     'linkOptions' => ['data-method' => 'post']
                                     ],
                             Yii::$app->user->isGuest ?
@@ -114,7 +124,7 @@ AppAsset::register($this);
                                     'url'=> Yii::$app->homeUrl,
                                 ] :
                                 [ 'label' => 'BagPack',
-                                    'url'=> '/index.php?r=pack/create'
+                                    'url'=> Yii::$app->homeUrl.'/index.php?r=pack/create'
                                 ],
                         ],
                     ]);?>

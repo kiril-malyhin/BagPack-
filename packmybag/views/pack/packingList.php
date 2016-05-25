@@ -15,47 +15,29 @@ $this->title = 'BagPack';
             </div>
             <div class="hr-final-list" ></div>
             <div ng-show="showFinalListContent" class="show-final-list-content clearfix ">
-                <div ng-if="section.stuffs.length > 0" class="form-group col-md-4 content-style" ng-repeat="section in finalItems" >
-                    <div class="packListContainer">
-                        <div class="content-block">
-                            {{section.section_name}}
-                            <div class=" col-md-11 hr-section"></div>
-                        </div>
-<!--                        <div ng-repeat="stuffs in section.stuffs" class="font-style">-->
-<!--                            <label style="font-weight: 400; cursor: pointer;">-->
-<!--                                <input type="checkbox"-->
-<!--                                       ng-click="selectStuffFinalList(stuffs)"-->
-<!--                                       value="{{stuffs.stuff_name}}"-->
-<!--                                       ng-model="stuffs.selected"-->
-<!--                                       ng-checked="checkedItems.indexOf(stuffs) != -1">-->
-<!--                                <span class="tab"></span>-->
-<!--                                <span ng-show="stuffs.selected">-->
-<!--                                    <strike>{{stuffs.stuff_name}}</strike>-->
-<!--                                </span>-->
-<!--                                <span ng-show="!stuffs.selected">-->
-<!--                                    <span>{{stuffs.stuff_name}}</span>-->
-<!--                                </span>-->
-<!--                            </label>-->
-<!--                        </div>-->
-                         <div ng-repeat="stuffs in addedStuffs" class="font-style">
-                            <label style="font-weight: 400; cursor: pointer;">
-                                <input type="checkbox"
-                                       ng-click="selectStuffFinalList(stuffs)"
-                                       value="{{stuffs.stuff_name}}"
-                                       ng-model="stuffs.selected"
-                                       ng-checked="checkedItems.indexOf(stuffs) != -1">
+                <div ng-repeat="section in addedStuffs" class="font-style form-group col-md-4 content-style">
+                    <div class="content-block" style="text-decoration: underline">
+                        {{section.section_name}}
+                    </div>
+                    <div ng-repeat="stuffs in section.stuffs" class="font-style">
+                        <label style="font-weight: 400; cursor: pointer;">
+                            <input type="checkbox"
+                                   ng-click="selectStuffFinalList(stuffs)"
+                                   value="{{stuffs.stuff_name}}"
+                                   ng-model="stuffs.selected"
+                                   ng-checked="checkedItems.indexOf(stuffs) != -1">
                                 <span class="tab"></span>
-                                <span ng-show="!stuffs.selected">
-                                    <strike>{{stuffs.stuff_name}}</strike>
-                                </span>
-                                <span ng-show="stuffs.selected">
+                            <span ng-show="!stuffs.selected">
                                     <span>{{stuffs.stuff_name}}</span>
                                 </span>
-                            </label>
-                        </div>
+                                <span ng-show="stuffs.selected">
+                                    <strike>{{stuffs.stuff_name}}</strike>
+                                </span>
+                        </label>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

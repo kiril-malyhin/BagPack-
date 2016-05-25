@@ -51,6 +51,30 @@ $this->title = 'BagPack';
                 </div>
                 <div class="hr-black"></div>
                 <div ng-show="startEditStuffs">
+<!--                    <div class="form-group col-md-4 content-style"  ng-repeat="section in resultStuffs" >-->
+<!--                        <div class="content-block" ng-hide="isSectionHidden(section)" style="text-decoration: underline">-->
+<!--                            {{section.section_name}}-->
+<!--                            <i style="color: #b50006" class="fa fa-plus-circle" ng-click="openNewStuff(section, checkedItems)"-->
+<!--                               tooltip-placement=top}" uib-tooltip="Click to add new stuff">-->
+<!--                            </i>-->
+<!--                        </div>-->
+<!--                        <div class="no-items content-block">-->
+<!--                            <div ng-if="sectionsContent[section.section_id]" ng-model="section.section_name">No items</div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div ng-repeat="stuffs in section.stuffs" class="font-style">-->
+<!--                            <label style="cursor: pointer">-->
+<!--                                <input type="checkbox"-->
+<!--                                       ng-model="stuffs.selected"-->
+<!--                                       ng-click="selectStuffFinalList(stuffs, section.section_name)"-->
+<!--                                       value="{{stuffs.stuff_name}}"-->
+<!--                                       ng-checked="isChecked(stuffs.stuff_id)">-->
+<!--                            </label>-->
+<!--                            <span class="tab"></span>-->
+<!---->
+<!--                            {{stuffs.stuff_name}}-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group col-md-4 content-style" ng-if="section.section_name.length > 0"  ng-repeat="section in sections" >
                         <div class="content-block" ng-hide="isSectionHidden(section)" style="text-decoration: underline">
                             {{section.section_name}}
@@ -66,7 +90,7 @@ $this->title = 'BagPack';
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
-                                       ng-click="selectStuffFinalList(stuffs)"
+                                       ng-click="selectStuffFinalList(stuffs, section.section_name)"
                                        value="{{stuffs.stuff_name}}"
                                        ng-checked="isChecked(stuffs.stuff_id)">
                             </label>
@@ -78,25 +102,29 @@ $this->title = 'BagPack';
 
                 <div ng-show="filteringEditStuffs">
                     <div class="form-group col-md-4 content-style" ng-if="section.section_name.length > 0" ng-repeat="section in sections" >
+                        <div ng-hide="section.section_name == 'Active' || section.section_name == 'Leisure' || section.section_name == 'Cognitive'"></div>
                         <div class="content-block" ng-hide="isSectionHidden(section)" style="text-decoration: underline">
                             {{section.section_name}}
                             <i style="color: #b50006" class="fa fa-plus-circle" ng-click="openNewStuff()"
                                tooltip-placement=top}" uib-tooltip="Click to add new stuff">
                             </i>
                         </div>
-                        <div class="no-items content-block">
-                            <div ng-if="isSectionEmpty(section)" ng-model="section.section_name">No items</div>
+                        <div class="no-items">
+                            <div ng-if="isSectionEmpty(section)" class="font-style" ng-model="section.section_name">No items</div>
                         </div>
 
                         <div ng-repeat="stuffs in section.stuffs"  class="font-style" ng-show="checkItem(stuffs)">
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
-                                       ng-click="selectStuffFinalList(stuffs)"
+                                       ng-click="selectStuffFinalList(stuffs, section.section_name)"
                                        value="{{stuffs.stuff_name}}"
-                                       ng-checked="checkedItems.indexOf(stuffs) != -1">
+                                       ng-checked="isChecked(stuffs.stuff_id)">
                             <span class="tab"></span>{{stuffs.stuff_name}}
                             </label>
+<!--                            <div class="no-items">-->
+<!--                                <div ng-if="section.stuffs.length == 0" ng-model="section.section_name">No items</div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>

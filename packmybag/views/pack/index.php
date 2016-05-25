@@ -59,7 +59,7 @@ $this->title = 'BagPack';
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
-                                       ng-click="selectStuff(stuffs)"
+                                       ng-click="selectStuff(stuffs, section.section_name)"
                                 value="{{stuffs.stuff_name}}"
                                        ng-checked="checkedItems.indexOf(stuffs) != -1">
                                 <span class="tab">
@@ -85,7 +85,7 @@ $this->title = 'BagPack';
                             <label style="cursor: pointer">
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
-                                       ng-click="selectStuff(stuffs)"
+                                       ng-click="selectStuff(stuffs, section.section_name)"
                                        value="{{stuffs.stuff_name}}"
                                        ng-checked="checkedItems.indexOf(stuffs) != -1">
                                 <span class="tab"></span>{{stuffs.stuff_name}}
@@ -129,6 +129,7 @@ $this->title = 'BagPack';
                                 <input type="checkbox"
                                        ng-model="stuffs.selected"
                                        value="{{stuffs.stuff_name}}"
+                                       ng-click="selectStuff(stuffs, section.section_name)"
                                        ng-checked="checkedItems.indexOf(stuffs) != -1">
                                 <span class="tab"></span>{{stuffs.stuff_name}}
                             </label>

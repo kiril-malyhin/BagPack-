@@ -21,6 +21,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
     $scope.finalItems = [];
     $scope.addedStuffs = [];
     var userStuffs = [];
+    var temp = [];
 
     var QueryString = function () {
 
@@ -43,56 +44,6 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
 
     var list_ID = QueryString.list_id;
 
-    $scope.radioButtonSetValue = function(key, value){
-        $scope.bar[key]=value;
-        return;
-    };
-
-    $scope.selectStuff = function(stuffs){
-
-        if ($scope.checkedItems.indexOf(stuffs) === -1) {
-            $scope.checkedItems.push(stuffs);
-        } else {
-            $scope.checkedItems.splice($scope.checkedItems.indexOf(stuffs), 1);
-        }
-    };
-
-    $scope.selectStuffFinalList = function(stuffs){
-
-        var items = $scope.checkedItems;
-
-        var temp = [];
-        for(var item in items){
-            temp.push(items[item].stuff_id);
-        }
-
-        if(temp.indexOf(stuffs.stuff_id) === -1) {
-            $scope.checkedItems.push(stuffs);
-        } else {
-            $scope.checkedItems.splice($scope.checkedItems.indexOf(stuffs), 1);
-        }
-    };
-
-    $http.post('index.php?r=stuff/stuffs').success(function(response){
-        $scope.stuffFilters = response;
-
-    }).error(function(error){
-        console.error(error);
-    });
-
-    $scope.backToChoose = function(){
-        $scope.showChooseContent = true;
-        $scope.showListContent = false;
-    };
-
-    $scope.backToLists = function () {
-        alertify.confirm("Do You really want to close list? All entered data will be lost!", function (e) {
-            if (e) {
-                window.location.href = "index.php?r=pack/showlists";
-            }
-        });
-    };
-
     $http.post('index.php?r=stuff/section').success(function(response){
 
         $scope.sections = response;
@@ -102,19 +53,100 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
             }
         }
 
+
+
     }).error(function(error){
         console.error(error);
     });
 
-    $scope.refreshPackingFinalList = function(){
+    $http.post('index.php?r=stuff/stuffs').success(function(response){
+        $scope.stuffFilters = response;
 
-        $scope.checkedItems = [];
+    }).error(function(error){
+        console.error(error);
+    });
 
-        for(var section in $scope.sections) {
-            for(var stuff in $scope.sections[section].stuffs) {
-                $scope.sections[section].stuffs[stuff].selected = false;
+    $http.post('index.php?r=list/current_list', {listID: list_ID}).success(function (response) {
+
+        $scope.finalLists = response;
+
+        var listStuffs = [];
+        var listFilters = [];
+        var finalLists = $scope.finalLists;
+
+        $scope.resultStuffs = JSON.parse(finalLists[0].list_data);
+        var finalStuffs = $scope.resultStuffs;
+        for (var section in finalStuffs) {
+
+            for(var stuff in finalStuffs[section].stuffs) {
+                listStuffs.push(finalStuffs[section].stuffs[stuff]);
+                $scope.addedStuffs.push(finalStuffs[section].stuffs[stuff]);
             }
         }
+
+        //console.log($scope.addedStuffs);
+        //console.log(finalStuffs);
+
+        $scope.description = finalLists[0].list_name;
+        $scope.listName = finalLists[0].list_description;
+
+        var filters = JSON.parse(finalLists[0].list_filter);
+        for(var filter in filters){
+            if(filters[filter] != null){
+                listFilters.push(filters[filter]);
+            }
+        }
+        secondAction(listStuffs);
+        checkFilter(listFilters);
+    });
+
+    $scope.radioButtonSetValue = function(key, value){
+        $scope.bar[key]=value;
+        return;
+    };
+
+    $scope.selectStuffFinalList = function(stuffs, sectionName){
+        //console.log(stuffs);
+        var items = $scope.checkedItems;
+        //console.log(stuffs);
+
+        var temp = [];
+        for(var item in items){
+            temp.push(items[item].stuff_id);
+        }
+
+        //console.log(temp);
+
+        var sectionFound = false;
+        var sectionObject = {};
+
+        for(var section in $scope.checkedItems) {
+            if ($scope.checkedItems[section].section_name == sectionName) {
+                sectionFound = true;
+
+                if ($scope.checkedItems[section].stuffs.indexOf(stuffs) === -1) {
+                    $scope.checkedItems[section].stuffs.push(stuffs);
+                } else {
+                    $scope.checkedItems[section].stuffs.splice($scope.checkedItems[section].stuffs.indexOf(stuffs), 1);
+                }
+
+            }
+            //console.log($scope.checkedItems[section].stuffs);
+        }
+
+
+        if (sectionFound == false) {
+            sectionObject = { section_name: sectionName, stuffs: [stuffs] };
+            $scope.checkedItems.push(sectionObject);
+        }
+    };
+
+    $scope.backToLists = function () {
+        alertify.confirm("Do You really want to close list? All entered data will be lost!", function (e) {
+            if (e) {
+                window.location.href = "index.php?r=pack/showlists";
+            }
+        });
     };
 
     $scope.$watch('bar', function(newValue) {
@@ -148,7 +180,6 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         return false;
     };
 
-
     $scope.isSectionHidden = function(section) {
 
         var filters = $scope.stuffFilters;
@@ -169,7 +200,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         return false;
     };
 
-    $scope.openNewStuff = function (section, checkedItems) {
+    $scope.openNewStuff = function (section) {
 
         $uibModal.open({
 
@@ -189,11 +220,10 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                     var newStuff = {
                         stuff_name: $scope.stuffInfo.stuffName,
                         selected: true,
-                        section_name: section.section_name
+                        stuff_id: section.stuffs.length * (-1)
                     };
 
                     section.stuffs.push(newStuff);
-                    checkedItems.push(newStuff);
 
                     $scope.autoClose();
                     Alertify.success('Stuff was added!');
@@ -211,30 +241,11 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         });
     };
 
-
-    $scope.noStuffsInSection = function(section){
-        for (var stuff in section.stuffs) {
-            if (section.stuffs[stuff].selected) {
-                return false;
-            }
-        }
-        return true;
-    };
-
-    $scope.noStuffsInSectionEdit = function(section){
-        for (var stuff in section.stuffs) {
-            if (section.stuffs[stuff].selected) {
-                return false;
-            }
-        }
-        return false;
-    };
-
     $scope.openList = function () {
         $uibModal.open({
 
             templateUrl: 'templates/site/newListForm.html',
-            controller: function ($scope, $uibModalInstance, items, filters) {
+            controller: function ($scope, $uibModalInstance, items, filters, stuffs) {
 
                 $scope.Cancel = function () {
                     $uibModalInstance.dismiss('Cancel');
@@ -268,7 +279,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                             console.error(error);
                         });
                     }
-                    else if(items == 0){
+                    else if(items.stuffs == 0){
                         $scope.autoClose();
                         Alertify.alert('Your list is empty! You should check at least 1 item!')
                     }
@@ -286,51 +297,11 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
         });
     };
 
-    $scope.allStuffsSelected = function () {
-        for(var section in $scope.sections) {
-            for(var stuff in $scope.sections[section].stuffs) {
-                if (!$scope.sections[section].stuffs[stuff].selected) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    };
-
-    $http.post('index.php?r=list/current_list', {listID: list_ID}).success(function (response) {
-
-        $scope.finalLists = response;
-
-        var listStuffs = [];
-        var listFilters = [];
-        var finalLists = $scope.finalLists;
-
-        var finalStuffs = JSON.parse(finalLists[0].list_data);
-        for (var finalStuff in finalStuffs) {
-            listStuffs.push(finalStuffs[finalStuff].stuff_id);
-            $scope.addedStuffs.push(finalStuffs[finalStuff]);
-        }
-
-        $scope.description = finalLists[0].list_name;
-        $scope.listName = finalLists[0].list_description;
-
-        var filters = JSON.parse(finalLists[0].list_filter);
-        for(var filter in filters){
-            if(filters[filter] != null){
-                listFilters.push(filters[filter]);
-            }
-        }
-        secondAction(listStuffs);
-        checkFilter(listFilters);
-    });
-
     function secondAction (listStuffs) {
         $http.post('index.php?r=list/section').success(function (response) {
             $scope.sectionsContent = {};
             $scope.sectionsFinal = response;
             $scope.checkedQwe = {};
-
 
 
             for(var listItem in listStuffs) {
@@ -345,16 +316,11 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                     for (var stuff in $scope.sectionsFinal[section].stuffs) {
                         $scope.sectionsFinal[section].stuffs[stuff].selected = true;
 
-                        if ($scope.sectionsFinal[section].stuffs[stuff].stuff_id == listStuffs[listItem]) {
+                        if ($scope.sectionsFinal[section].stuffs[stuff].stuff_id == listStuffs[listItem].stuff_id || $scope.sectionsFinal[section].stuffs[stuff].stuff_id < 0) {
 
                             $scope.finalItems[section].stuffs.push($scope.sectionsFinal[section].stuffs[stuff]);
 
-                            if ($scope.checkedItems.indexOf($scope.sectionsFinal[section].stuffs[stuff]) === -1) {
-
-                                $scope.checkedItems.push($scope.sectionsFinal[section].stuffs[stuff]);
-                            } else {
-                                $scope.checkedItems.splice($scope.checkedItems.indexOf($scope.sectionsFinal[section].stuffs[stuff]), 1);
-                            }
+                            $scope.selectStuffFinalList($scope.sectionsFinal[section].stuffs[stuff], $scope.sectionsFinal[section].section_name);
                         }
                     }
                 }
@@ -385,7 +351,6 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                     }
                 }
             }
-            console.log($scope.filterValues);
             return false;
         });
     }
@@ -396,15 +361,15 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
                 return false;
             }
         }
-
-        return true;
     };
 
     $scope.isChecked = function(stuff_id) {
-        var items = $scope.checkedItems;
-        var temp = [];
-        for(var item in items){
-            temp.push(items[item].stuff_id);
+
+        for(var stuffs in $scope.addedStuffs){
+            //for(var stuff in $scope.checkedItems[section].stuffs) {
+            //    ($scope.checkedItems[section].stuffs[stuff].stuff_id);
+            //}
+            temp.push($scope.addedStuffs[stuffs].stuff_id);
         }
 
         return temp.indexOf(stuff_id) != -1;
@@ -461,6 +426,7 @@ app.controller("editCtrl", function($scope,Alertify, $http, $timeout, $uibModal)
             size: 'sm',
             resolve: {
                 items: function () {
+                    console.log($scope.checkedItems);
                     return $scope.checkedItems;
                 },
                 description: function(){

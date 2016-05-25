@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal) {
+app.controller("myBarCtrl", function($rootScope,$scope,Alertify, $http, $timeout, $uibModal) {
 
     $scope.showChooseContent = true;
     $scope.showListContent = false;
@@ -19,8 +19,9 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
     $scope.refreshListOfItems = true;
     $scope.finalItems = [];
     var userStuffs = [];
-    var crossedItems = {};
+    var crossedItems = [];
     var listStuffs = [];
+    var qwerty = [];
     $scope.addedStuffs = [];
 
     $scope.listInfo = {
@@ -52,12 +53,34 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
         $scope.bar[key] = value;
     };
 
-    $scope.selectStuff = function (stuffs) {
+    $scope.selectStuff = function(stuffs, sectionName){
 
-        if ($scope.checkedItems.indexOf(stuffs) === -1) {
-            $scope.checkedItems.push(stuffs);
-        } else {
-            $scope.checkedItems.splice($scope.checkedItems.indexOf(stuffs), 1);
+        var items = $scope.checkedItems;
+
+        var temp = [];
+        for(var item in items){
+            temp.push(items[item].stuff_id);
+        }
+
+        var sectionFound = false;
+        var sectionObject = {};
+
+
+        for(var section in $scope.checkedItems) {
+            if ($scope.checkedItems[section].section_name == sectionName) {
+                sectionFound = true;
+
+                if ($scope.checkedItems[section].stuffs.indexOf(stuffs) === -1) {
+                    $scope.checkedItems[section].stuffs.push(stuffs);
+                } else {
+                    $scope.checkedItems[section].stuffs.splice($scope.checkedItems[section].stuffs.indexOf(stuffs), 1);
+                }
+            }
+        }
+
+        if (sectionFound == false) {
+            sectionObject = { section_name: sectionName, stuffs: [stuffs] };
+            $scope.checkedItems.push(sectionObject);
         }
 
     };
@@ -214,11 +237,10 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
                     var newStuff = {
                         stuff_name: $scope.stuffInfo.stuffName,
                         selected: true,
-                        section_name: section.section_name
+                        stuff_id: section.stuffs.length * (-1)
                     };
 
                     section.stuffs.push(newStuff);
-                    checkedItems.push(newStuff);
 
                     $scope.autoClose();
                     Alertify.success('Stuff was added!');
@@ -343,61 +365,61 @@ app.controller("myBarCtrl", function($scope,Alertify, $http, $timeout, $uibModal
         $scope.finalLists = response;
 
         var finalLists = $scope.finalLists;
-
         var finalStuffs = JSON.parse(finalLists[0].list_data);
-        for (var finalStuff in finalStuffs) {
-            listStuffs.push(finalStuffs[finalStuff].stuff_id);
-            $scope.addedStuffs.push(finalStuffs[finalStuff]);
+
+        for (var stuffs in finalStuffs) {
+            for(var j in finalStuffs[stuffs].stuffs){
+                finalStuffs[stuffs].stuffs[j].selected = false;
+            }
+            $scope.addedStuffs.push(finalStuffs[stuffs]);
         }
 
-        console.log($scope.addedStuffs);
-        var addedStuffs = $scope.addedStuffs;
+        for (var finalStuff in finalStuffs) {
+            for(var i in finalStuffs[finalStuff].stuffs){
+                listStuffs.push(finalStuffs[finalStuff].stuffs[i].stuff_id);
+            }
+        }
 
         $scope.selectStuffFinalList(listStuffs);
-        secondAction(listStuffs,addedStuffs);
-     });
+    });
 
-    function secondAction (listStuffs, addedStuffs) {
-        $http.post('index.php?r=list/section').success(function (response) {
+    $scope.selectStuffFinalList = function(stuffs, sectionName){
 
-            $scope.sectionsFinal = response;
+        var items = $scope.checkedItems;
 
-            for(var listItem in listStuffs) {
-                for(var section in $scope.sectionsFinal) {
-                    if (!$scope.finalItems[section]) {
-                        $scope.finalItems[section] = {};
-                        $scope.finalItems[section].section_name = $scope.sectionsFinal[section].section_name;
-                        $scope.finalItems[section].stuffs = [];
-                    }
+        var temp = [];
+        for(var item in items){
+            temp.push(items[item].stuff_id);
+        }
 
-                    for (var stuff in $scope.sectionsFinal[section].stuffs) {
-                        if ($scope.sectionsFinal[section].stuffs[stuff].stuff_id == listStuffs[listItem]) {
-                            $scope.finalItems[section].stuffs.push($scope.sectionsFinal[section].stuffs[stuff]);
-                        }
-                        //console.log($scope.sectionsFinal[section].section_name);
-                        //console.log(addedStuffs);
-                        //else if($scope.sectionsFinal[section].section_name == addedStuffs.section_name){
-                        //    console.log("test");
-                        //}
-                    }
+        var sectionFound = false;
+        var sectionObject = {};
+
+        for(var section in $scope.checkedItems) {
+            if ($scope.checkedItems[section].section_name == sectionName) {
+                sectionFound = true;
+
+                if ($scope.checkedItems[section].stuffs.indexOf(stuffs) === -1) {
+                    $scope.checkedItems[section].stuffs.push(stuffs);
+                    crossedItems.push(stuffs);
+                } else {
+                    $scope.checkedItems[section].stuffs.splice($scope.checkedItems[section].stuffs.indexOf(stuffs), 1);
+                    crossedItems.splice(crossedItems.indexOf(stuffs), 1);
                 }
             }
-        });
-    }
-
-    $scope.selectStuffFinalList = function (stuffs) {
-
-        console.log(stuffs);
-        if ($scope.checkedItems.indexOf(stuffs) === -1) {
-            $scope.checkedItems.push(stuffs);
-        } else {
-            $scope.checkedItems.splice($scope.checkedItems.indexOf(stuffs), 1);
         }
-        crossedItems = $scope.checkedItems;
-        if(listStuffs.length == crossedItems.length - 1){
+
+        if (sectionFound == false) {
+            sectionObject = { section_name: sectionName, stuffs: [stuffs] };
+            $scope.checkedItems.push(sectionObject);
+        }
+
+        if(listStuffs.length == crossedItems.length){
             Alertify.alert("Your bag has been packed!");
         }
+
     };
+
     $scope.backToLists = function(){
         window.location.href = "index.php?r=pack/showlists";
     };

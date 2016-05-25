@@ -2,7 +2,7 @@ app.controller("loginCtrl", function($scope, $http, $state, $timeout,Alertify,$u
 
     $scope.openLogin = function (size) {
 
-        var modalInstance = $uibModal.open({
+        $uibModal.open({
             templateUrl: 'templates/user/loginForm.html',
             controller: function ($scope, $uibModalInstance) {
 

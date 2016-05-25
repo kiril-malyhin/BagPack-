@@ -42,7 +42,7 @@ $this->title = 'BagPack';
                                     </div>
                                 </h2>
                             </div>
-                            <div class="card-img" alt="Card image">
+                            <div class="card-img" alt="Card image"></div>
                         </div>
                         <label class="description-style">Description:</label>
                         <textarea class="description" disabled="disabled"  rows="3" >{{list.list_description}}</textarea>

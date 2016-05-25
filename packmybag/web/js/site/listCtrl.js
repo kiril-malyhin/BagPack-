@@ -1,13 +1,12 @@
 'use strict';
 
-app.controller("listCtrl", function($scope,Alertify, $http) {
+app.controller("listCtrl", function($rootScope,$scope,Alertify, $http) {
+
+    $scope.testNumber = 3;
 
     $http.post('index.php?r=list/all_lists').success(function(response){
 
         $scope.lists = response;
-
-    }).error(function(error){
-        console.error(error);
     });
 
     $http.post('index.php?r=list/user_name').success(function(response){
@@ -43,8 +42,5 @@ app.controller("listCtrl", function($scope,Alertify, $http) {
                 Alertify.error("List was not deleted!");
             }
         });
-
     };
-
-
 });
